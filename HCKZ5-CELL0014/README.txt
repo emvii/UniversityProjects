@@ -11,6 +11,8 @@ List of required packages:
 - NumPy
 - scipy
 - matplotlib
+- mpl_toolkits
+- random
 
 ## Installation
 To get the code running on your local machine, follow these steps:
