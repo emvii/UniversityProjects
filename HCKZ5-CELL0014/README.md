@@ -22,3 +22,5 @@ To get the code running on your local machine, follow these steps:
 ## Usage
 To execute the code:
 Open jupyterlab, then open `Toggle_Switch_Analysis.ipynb` notebook and run all cells.
+
+(This work was completed as part of the UCL year 3 module titled CELL0014 Dynamic Biological Systems)
