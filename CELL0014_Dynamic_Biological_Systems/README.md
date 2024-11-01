@@ -1,7 +1,7 @@
 # Exploration of Bistability and Stochastic Influence in the Toggle Switch Gene Regulatory Circuit
 
 ## Objective
-This repository contains code for analyzing the bistable behaviour in a toggle switch gene regulatory circuit under stochastic influences. When run, the code generates 14 plots detailed in the document "HCKZ5-CELL0014-REPORT".
+The repository HCKZ5-CELL0014 contains code for analyzing the bistable behaviour in a toggle switch gene regulatory circuit under stochastic influences. When run, the code generates 14 plots detailed in the document "HCKZ5-CELL0014-REPORT".
 
 ## Requirements
 The code was developed and tested in JupyterLab version 4.0.7 with Python 3.8.18. Ensure that your environment matches or is compatible with these versions.
