@@ -1,0 +1,584 @@
+Species,Continent,Leaf.Length,Leaf.Width,Serrated.Smooth,Hairy.Non.hairy,Waxy.Non.waxy,Compound.Simple,Central.Auxiliary,Group
+Rhododendron lyi,Asia,79,31.2,0,0,1,0,0,1
+,,87,32,NA,NA,NA,NA,NA,NA
+,,92,38.2,NA,NA,NA,NA,NA,NA
+Taxus wallichiana,Asia,21.2,1.3,0,0,1,1,0,1
+,,22.4,2.9,NA,NA,NA,NA,NA,NA
+,,17.4,2.3,NA,NA,NA,NA,NA,NA
+Arisaema tortuosum,Asia,454,39.3,0,0,1,1,1,1
+,,480,40.5,NA,NA,NA,NA,NA,NA
+,,460,33.1,NA,NA,NA,NA,NA,NA
+Rhododendron scopulorum,Himalayas,88.6,35.8,0,1,1,0,0,1
+,,97,43,NA,NA,NA,NA,NA,NA
+,,107.6,38.6,NA,NA,NA,NA,NA,NA
+Strobilanthes glutinosus,Himalayas,127.1,67.2,1,1,0,0,0,1
+,,128.8,75.2,NA,NA,NA,NA,NA,NA
+,,136.5,79.4,NA,NA,NA,NA,NA,NA
+Dichroa versicolor,Himalayas,273,120.3,1,0,1,0,0,1
+,,280,125.7,NA,NA,NA,NA,NA,NA
+,,288,124,NA,NA,NA,NA,NA,NA
+Lagunaria patersonia,Australia,121.2,45.1,0,0,1,0,0,1
+,,122.2,48.2,NA,NA,NA,NA,NA,NA
+,,121.3,46,NA,NA,NA,NA,NA,NA
+Dicksonia antarctica,Australia,296,69.1,1,0,1,1,1,1
+,,284.5,69.5,NA,NA,NA,NA,NA,NA
+,,270.5,69,NA,NA,NA,NA,NA,NA
+Leptospermum polygalifolium,Australia,12.2,1.8,0,0,1,0,0,1
+,,13.5,1.6,NA,NA,NA,NA,NA,NA
+,,13.1,2.2,NA,NA,NA,NA,NA,NA
+Elingamita johnsonii,New Zealand,156.5,80.4,0,0,1,1,1,1
+,,145.3,80.3,NA,NA,NA,NA,NA,NA
+,,156.5,74.4,NA,NA,NA,NA,NA,NA
+Metrosideros tomentosa,New Zealand,43.1,17.7,0,1,1,0,0,1
+,,46,20.2,NA,NA,NA,NA,NA,NA
+,,41.4,16.8,NA,NA,NA,NA,NA,NA
+Corokia x virgata,New Zealand,32.8,21.5,0,0,0,0,0,1
+,,33.7,22.6,NA,NA,NA,NA,NA,NA
+,,30.1,22.6,NA,NA,NA,NA,NA,NA
+Oreopanax peltatus,Americas,258,200,1,0,1,0,0,1
+,,256,187.7,NA,NA,NA,NA,NA,NA
+,,240.5,202,NA,NA,NA,NA,NA,NA
+Tibouchina urvilleana,Americas,158.5,88,0,1,0,0,0,1
+,,156.6,85.3,NA,NA,NA,NA,NA,NA
+,,146.1,87.6,NA,NA,NA,NA,NA,NA
+Mitraria coccinea,Americas,20.3,11.9,1,0,1,0,0,1
+,,21.1,13.9,NA,NA,NA,NA,NA,NA
+,,23.5,15.1,NA,NA,NA,NA,NA,NA
+Tecomaria capensis,Africa,28.9,20.9,1,0,0,1,0,1
+,,28.1,20.9,NA,NA,NA,NA,NA,NA
+,,26.5,20.5,NA,NA,NA,NA,NA,NA
+Pterocelastrus tricuspidatus,Africa,47.7,28.2,0,0,1,0,0,1
+,,52.7,27.2,NA,NA,NA,NA,NA,NA
+,,49.4,30.7,NA,NA,NA,NA,NA,NA
+Acridocarpus natalitius,Africa,77.7,25.6,0,0,1,0,0,1
+,,74.2,29.2,NA,NA,NA,NA,NA,NA
+,,70.3,26.1,NA,NA,NA,NA,NA,NA
+Calothamnus sanguineus,Western Australia,19,0.8,0,1,1,0,0,1
+,,12.9,0.9,NA,NA,NA,NA,NA,NA
+,,15.3,0.7,NA,NA,NA,NA,NA,NA
+Thomasia solanacea,Western Australia,54.2,57.7,0,1,0,0,0,1
+,,57.5,42.4,NA,NA,NA,NA,NA,NA
+,,60.2,52,NA,NA,NA,NA,NA,NA
+Banksia brownii,Western Australia,146.2,10.7,0,0,1,0,0,1
+,,131.7,11.9,NA,NA,NA,NA,NA,NA
+,,129.9,11.1,NA,NA,NA,NA,NA,NA
+Strelitzia reginae,Africa,486.7,175.7,0,0,1,0,1,6
+,,542.5,183.5,NA,NA,NA,NA,NA,NA
+,,526,184.8,NA,NA,NA,NA,NA,NA
+Curonia capensis,Africa,85,26.8,1,0,1,0,0,6
+,,193.4,11.8,NA,NA,NA,NA,NA,NA
+,,132,37.6,NA,NA,NA,NA,NA,NA
+Hypericum aegypticum,Africa,18.9,7,0,0,0,0,1,6
+,,16.5,5.8,NA,NA,NA,NA,NA,NA
+,,18.6,8.5,NA,NA,NA,NA,NA,NA
+Cestrum psittacinum,Americas,117.2,46.6,0,0,0,0,0,6
+,,134.9,47.8,NA,NA,NA,NA,NA,NA
+,,168.7,55.4,NA,NA,NA,NA,NA,NA
+Phymosia rosea,Americas,156.6,190.8,0,1,0,0,0,6
+,,189.9,192.1,NA,NA,NA,NA,NA,NA
+,,174.6,173.3,NA,NA,NA,NA,NA,NA
+Salvia purpurea,Americas,139.6,77.2,1,0,0,0,1,6
+,,131.5,77.6,NA,NA,NA,NA,NA,NA
+,,114.1,63.4,NA,NA,NA,NA,NA,NA
+Metrosideros nervulosa,Australia,35.5,24.9,0,1,1,0,0,6
+,,29.3,27.4,NA,NA,NA,NA,NA,NA
+,,36.5,22.2,NA,NA,NA,NA,NA,NA
+Hebe corriganii,New Zealand,109.7,26.4,0,0,1,0,1,6
+,,104.1,25.4,NA,NA,NA,NA,NA,NA
+,,102.3,22.3,NA,NA,NA,NA,NA,NA
+Marattia salicina,New Zealand,440,242.1,1,0,1,1,1,6
+,,454.4,252.8,NA,NA,NA,NA,NA,NA
+,,432.4,254.9,NA,NA,NA,NA,NA,NA
+Pollia crispata,Australia,148.9,41.9,0,0,1,0,1,6
+,,151.9,33.8,NA,NA,NA,NA,NA,NA
+,,123.3,32.3,NA,NA,NA,NA,NA,NA
+Correa alba,Australia,36.9,30.2,0,1,1,0,0,6
+,,42.1,26.8,NA,NA,NA,NA,NA,NA
+,,45.2,30.5,NA,NA,NA,NA,NA,NA
+Macedamia integrifolia,Australia,116.1,40,0,0,1,0,0,6
+,,141.4,42.6,NA,NA,NA,NA,NA,NA
+,,103.3,29.2,NA,NA,NA,NA,NA,NA
+Rhododendron ciliatum,Himalayas,70.8,21.9,0,1,1,0,0,6
+,,105.5,48.5,NA,NA,NA,NA,NA,NA
+,,78.7,31.1,NA,NA,NA,NA,NA,NA
+Polygonatum oppositifolium,Himalayas,85.4,39.7,0,0,0,0,1,6
+,,68.1,35.4,NA,NA,NA,NA,NA,NA
+,,78.1,35.7,NA,NA,NA,NA,NA,NA
+Rhododendron Formosum var. formosum,Himalayas,65.5,20.4,0,0,1,1,0,6
+,,77.3,18.8,NA,NA,NA,NA,NA,NA
+,,81.4,22.7,NA,NA,NA,NA,NA,NA
+Ficus Tikoua var. laevis,Asia,104.1,49.5,1,0,1,0,0,6
+,,145.7,69.7,NA,NA,NA,NA,NA,NA
+,,110.5,53.8,NA,NA,NA,NA,NA,NA
+Hibiscus hamabo,Asia,81.3,103.4,1,0,0,0,0,6
+,,96,90.4,NA,NA,NA,NA,NA,NA
+,,67.4,79.1,NA,NA,NA,NA,NA,NA
+Aristea platycaulis,Africa,306.8,32,0,0,1,0,1,4
+,,374.8,21,NA,NA,NA,NA,NA,NA
+,,307.3,23,NA,NA,NA,NA,NA,NA
+Afrocarpus falcatus,Africa,57,5,0,0,1,1,1,4
+,,46,7,NA,NA,NA,NA,NA,NA
+,,36,4,NA,NA,NA,NA,NA,NA
+Rosa abyssinica,Africa,36.5,13.7,1,0,0,1,0,4
+,,39,18.7,NA,NA,NA,NA,NA,NA
+,,34.3,16.1,NA,NA,NA,NA,NA,NA
+Deppea splendens,Americas,144.7,57,0,0,0,0,0,4
+,,156,68.1,NA,NA,NA,NA,NA,NA
+,,117.9,44.2,NA,NA,NA,NA,NA,NA
+Hibiscus splendens,Americas,115.9,48.8,0,0,1,0,0,4
+,,154.4,64.6,NA,NA,NA,NA,NA,NA
+,,148.2,70.6,NA,NA,NA,NA,NA,NA
+Salvia purpurea,Americas,115.2,66.6,1,0,0,0,0,4
+,,106,62.4,NA,NA,NA,NA,NA,NA
+,,94.1,64.7,NA,NA,NA,NA,NA,NA
+Callicarpa aff. tomentosa,Asia,225,156.8,1,1,0,0,0,4
+,,237,175,NA,NA,NA,NA,NA,NA
+,,230,160,NA,NA,NA,NA,NA,NA
+Maytenus royleana,Asia,41.6,20.9,0,0,1,0,0,4
+,,39.6,19.3,NA,NA,NA,NA,NA,NA
+,,41.9,22.3,NA,NA,NA,NA,NA,NA
+Trachelospermum asiaticum,Asia,81.5,34.6,0,0,1,0,0,4
+,,87.7,38.7,NA,NA,NA,NA,NA,NA
+,,76.3,41.6,NA,NA,NA,NA,NA,NA
+Rhododendron formosum,Himalayas,85,18.2,0,0,1,0,1,4
+,,88,20.8,NA,NA,NA,NA,NA,NA
+,,79.9,19.8,NA,NA,NA,NA,NA,NA
+Persicaria capitata,Himalayas,49.1,25,0,1,0,0,0,4
+,,61.3,24.3,NA,NA,NA,NA,NA,NA
+,,59.6,24.4,NA,NA,NA,NA,NA,NA
+Dichroa versicolor,Himalayas,280,128,1,0,1,0,1,4
+,,270,135,NA,NA,NA,NA,NA,NA
+,,265,135.9,NA,NA,NA,NA,NA,NA
+Passiflora tetrandra,New Zealand,90.1,29.1,0,0,1,0,0,4
+,,70.8,36.6,NA,NA,NA,NA,NA,NA
+,,108.8,42.5,NA,NA,NA,NA,NA,NA
+Acaena novae-zelandiae,New Zealand,12.8,5.3,1,0,0,1,0,4
+,,13.2,6.6,NA,NA,NA,NA,NA,NA
+,,14.9,7.7,NA,NA,NA,NA,NA,NA
+Freycinetia banksii,New Zealand,750,18.5,0,0,1,0,1,4
+,,1010,17.9,NA,NA,NA,NA,NA,NA
+,,980,18.5,NA,NA,NA,NA,NA,NA
+Gynochthodes jasminoides,Australia,80.5,43.5,0,0,1,0,0,4
+,,91.8,41.7,NA,NA,NA,NA,NA,NA
+,,77.2,41.4,NA,NA,NA,NA,NA,NA
+Macadamia integrifolia,Australia,109.7,29.4,0,0,1,0,1,4
+,,136.4,43.1,NA,NA,NA,NA,NA,NA
+,,130.9,45.2,NA,NA,NA,NA,NA,NA
+Olearia pannosa,Australia,80.1,43.1,0,0,1,0,1,4
+,,94.2,46,NA,NA,NA,NA,NA,NA
+,,103.7,45.2,NA,NA,NA,NA,NA,NA
+Stylidium adnatum,Western Australia,13,2.3,0,0,1,0,1,4
+,,11.1,1.7,NA,NA,NA,NA,NA,NA
+,,14.5,1.9,NA,NA,NA,NA,NA,NA
+Hibbertia grossulariifolia,Western Australia,38,31.2,1,0,1,0,0,4
+,,39.1,32.6,NA,NA,NA,NA,NA,NA
+,,46.7,28.2,NA,NA,NA,NA,NA,NA
+Olearia astroloba,Western Australia,12.8,6.6,1,0,1,0,1,4
+,,13.7,5.8,NA,NA,NA,NA,NA,NA
+,,12.6,4.3,NA,NA,NA,NA,NA,NA
+Cuphea ignea,Americas,74.3,44.3,1,1,0,0,0,5
+,,82.9,54.5,NA,NA,NA,NA,NA,NA
+,,65.9,53.2,NA,NA,NA,NA,NA,NA
+Jubaea chilensis,Americas,2850.4,1018,0,0,0,1,1,5
+,,3115.1,1221.6,NA,NA,NA,NA,NA,NA
+,,3155.8,1221.6,NA,NA,NA,NA,NA,NA
+Canna indica,Americas,508.8,145.1,0,0,1,0,1,5
+,,423.8,141.5,NA,NA,NA,NA,NA,NA
+,,436,156.6,NA,NA,NA,NA,NA,NA
+Cyathea medullaris,New Zealand,1119.8,814.4,1,0,0,1,1,5
+,,1018,916.2,NA,NA,NA,NA,NA,NA
+,,1425.2,1119.8,NA,NA,NA,NA,NA,NA
+Dicksonia fibrosa,New Zealand,814.4,712.6,1,0,0,1,1,5
+,,1018,509,NA,NA,NA,NA,NA,NA
+,,1119.8,407.2,NA,NA,NA,NA,NA,NA
+Metrosideros robusta,New Zealand,49.7,18.6,0,0,1,0,0,5
+,,46.2,18.3,NA,NA,NA,NA,NA,NA
+,,51,22,NA,NA,NA,NA,NA,NA
+Correa 'Dusky Bells',Australia,30.7,17.7,0,0,0,0,0,5
+,,32.3,17.5,NA,NA,NA,NA,NA,NA
+,,34.9,18.6,NA,NA,NA,NA,NA,NA
+Banksia montana,Australia,116.1,30,1,0,1,0,0,5
+,,113,24.8,NA,NA,NA,NA,NA,NA
+,,107.2,19.9,NA,NA,NA,NA,NA,NA
+Pandorea pandorana,Australia,130.9,106.4,0,0,1,1,0,5
+,,183.4,101.1,NA,NA,NA,NA,NA,NA
+,,186.8,122,NA,NA,NA,NA,NA,NA
+Hardenbergia comptoniana,Western Australia,85.7,23.6,0,0,0,0,0,5
+,,72,18.6,NA,NA,NA,NA,NA,NA
+,,95.5,20.9,NA,NA,NA,NA,NA,NA
+Stylidium adnatum,Western Australia,6.1,1.6,0,0,0,0,0,5
+,,11.3,2.4,NA,NA,NA,NA,NA,NA
+,,8.1,1.9,NA,NA,NA,NA,NA,NA
+Hibbertia grossulariifolia,Western Australia,49.7,26.3,1,1,0,0,0,5
+,,47.4,28.3,NA,NA,NA,NA,NA,NA
+,,46.9,30.2,NA,NA,NA,NA,NA,NA
+Dermatobotrys saundersii,Africa,111.5,57.7,1,0,1,0,0,5
+,,117.7,62.3,NA,NA,NA,NA,NA,NA
+,,104.8,63.8,NA,NA,NA,NA,NA,NA
+Aristea ensifolia,Africa,610.8,17.1,0,0,0,0,1,5
+,,509,21.6,NA,NA,NA,NA,NA,NA
+,,610.8,16,NA,NA,NA,NA,NA,NA
+Mundulea stenophylla,Africa,54,4.7,0,1,1,0,0,5
+,,34.9,5.1,NA,NA,NA,NA,NA,NA
+,,35.1,6,NA,NA,NA,NA,NA,NA
+Brassaiopsis ,Asia,509,814.4,1,0,1,0,0,5
+,,610.8,712.6,NA,NA,NA,NA,NA,NA
+,,407.2,610.8,NA,NA,NA,NA,NA,NA
+Hibiscus hamabo,Asia,73.7,81,1,1,0,0,0,5
+,,85.5,103.1,NA,NA,NA,NA,NA,NA
+,,97.9,91.6,NA,NA,NA,NA,NA,NA
+Pyrrosia lingua,Asia,89.3,31.5,0,0,1,1,0,5
+,,108.1,36.7,NA,NA,NA,NA,NA,NA
+,,87.6,31,NA,NA,NA,NA,NA,NA
+Aristea compressa,Africa,174.6,13.3,0,0,1,0,0,7
+,,188,13.8,NA,NA,NA,NA,NA,NA
+,,165.8,12.3,NA,NA,NA,NA,NA,NA
+,,170.8,12.9,NA,NA,NA,NA,NA,NA
+,,177,11.5,NA,NA,NA,NA,NA,NA
+Mundulea stenophylla,Africa,42.5,10.4,0,0,1,1,0,7
+,,62.3,6.7,NA,NA,NA,NA,NA,NA
+,,32.6,7.5,NA,NA,NA,NA,NA,NA
+,,25.7,7.9,NA,NA,NA,NA,NA,NA
+,,78.2,6.6,NA,NA,NA,NA,NA,NA
+Dombeya rotundifolia,Africa,68.8,72.5,0,1,0,0,0,7
+,,51.4,53.9,NA,NA,NA,NA,NA,NA
+,,76.6,96.3,NA,NA,NA,NA,NA,NA
+,,70.1,84.8,NA,NA,NA,NA,NA,NA
+,,76.2,83.7,NA,NA,NA,NA,NA,NA
+Salvia purpurea,Americas,118.4,77.8,1,1,0,0,0,7
+,,132.3,81.8,NA,NA,NA,NA,NA,NA
+,,117.3,65.7,NA,NA,NA,NA,NA,NA
+,,151.9,92.5,NA,NA,NA,NA,NA,NA
+,,82.9,54,NA,NA,NA,NA,NA,NA
+Canna indica,Americas,486.6,158.6,0,0,1,0,1,7
+,,281.9,133.2,NA,NA,NA,NA,NA,NA
+,,424.1,138.8,NA,NA,NA,NA,NA,NA
+,,334.3,116.4,NA,NA,NA,NA,NA,NA
+,,240.5,99.9,NA,NA,NA,NA,NA,NA
+Eupatorium riparium,Americas,79,32.8,1,0,0,0,0,7
+,,64.4,25.9,NA,NA,NA,NA,NA,NA
+,,57.6,24.9,NA,NA,NA,NA,NA,NA
+,,79.6,18.3,NA,NA,NA,NA,NA,NA
+,,109.6,34.8,NA,NA,NA,NA,NA,NA
+Solanum aviculare,New Zealand,130.8,41.5,0,0,1,0,0,7
+,,205.9,77.8,NA,NA,NA,NA,NA,NA
+,,128.5,43.5,NA,NA,NA,NA,NA,NA
+Fuchsia procumbens,New Zealand,16.7,17,1,0,0,0,0,7
+,,11.8,11.5,NA,NA,NA,NA,NA,NA
+,,14.4,13.6,NA,NA,NA,NA,NA,NA
+Dicksonia fibosa,New Zealand,28.4,7.2,1,0,0,1,0,7
+,,30.4,7.4,NA,NA,NA,NA,NA,NA
+,,26,7.6,NA,NA,NA,NA,NA,NA
+Polygonatum oppositifolium,Himalayas,75.8,40.2,0,0,1,0,0,7
+,,74.5,28,NA,NA,NA,NA,NA,NA
+,,86.2,42.9,NA,NA,NA,NA,NA,NA
+Rhododendron scopulorum,Himalayas,65.2,31.1,0,1,1,0,0,7
+,,60.9,25.4,NA,NA,NA,NA,NA,NA
+,,67.5,27.6,NA,NA,NA,NA,NA,NA
+Hedychium gardnerianum,Himalayas,372.1,111.5,0,0,1,0,1,7
+,,297.2,59.2,NA,NA,NA,NA,NA,NA
+,,382.6,100.2,NA,NA,NA,NA,NA,NA
+Rubus moluccanus,Asia,165.4,178.7,1,1,0,0,1,7
+,,92.4,92.6,NA,NA,NA,NA,NA,NA
+,,138.3,154.1,NA,NA,NA,NA,NA,NA
+Rohdea japonica,Asia,324.1,56.2,0,0,1,0,1,7
+,,297.8,57.7,NA,NA,NA,NA,NA,NA
+,,321.7,49.3,NA,NA,NA,NA,NA,NA
+Ficus henryi,Asia,174.9,60.5,0,0,1,0,0,7
+,,146.4,52.7,NA,NA,NA,NA,NA,NA
+,,177.6,60.4,NA,NA,NA,NA,NA,NA
+Pittosporum multiflorum,Australia,6.7,4.7,1,0,1,0,0,7
+,,9,5.1,NA,NA,NA,NA,NA,NA
+,,7.6,5.3,NA,NA,NA,NA,NA,NA
+Aphanopetaum resinosum,Australia,51.5,25.3,1,0,1,0,0,7
+,,51.2,24.3,NA,NA,NA,NA,NA,NA
+,,64,27.6,NA,NA,NA,NA,NA,NA
+Senna artemisioides,Australia,23.5,1,0,0,1,1,0,7
+,,23.5,1.9,NA,NA,NA,NA,NA,NA
+,,26.3,1.8,NA,NA,NA,NA,NA,NA
+Melaleuca quadrifida,Western Australia,24.8,0.7,0,1,1,0,0,7
+,,23.8,0.7,NA,NA,NA,NA,NA,NA
+,,21.4,0.4,NA,NA,NA,NA,NA,NA
+Olearia Astrolobia,Western Australia,13,5.9,0,0,0,1,0,7
+,,14.8,6.6,NA,NA,NA,NA,NA,NA
+,,12.7,4.8,NA,NA,NA,NA,NA,NA
+Hakea laurina,Western Australia,113.1,13.9,0,0,1,0,0,7
+,,98,13.6,NA,NA,NA,NA,NA,NA
+,,80.9,11.7,NA,NA,NA,NA,NA,NA
+Cuphea ignea,Americas,34,16.1,0,0,0,0,0,9
+,,44.7,21.7,NA,NA,NA,NA,NA,NA
+,,37.3,20.5,NA,NA,NA,NA,NA,NA
+,,461,229,NA,NA,NA,NA,NA,NA
+,,54.4,28.9,NA,NA,NA,NA,NA,NA
+Cestrum fasciculatum,Americas,103.9,48.5,0,1,0,0,0,9
+,,97.2,39.5,NA,NA,NA,NA,NA,NA
+,,109.8,45.8,NA,NA,NA,NA,NA,NA
+,,749,38.3,NA,NA,NA,NA,NA,NA
+,,112,53.3,NA,NA,NA,NA,NA,NA
+Salvia divinorum,Americas,192,74.7,1,0,0,0,0,9
+,,250.4,103.4,NA,NA,NA,NA,NA,NA
+,,182.8,847,NA,NA,NA,NA,NA,NA
+,,147.5,65.5,NA,NA,NA,NA,NA,NA
+,,200.2,94.4,NA,NA,NA,NA,NA,NA
+Metrosideros tomentosa,New Zealand,40.7,199,0,0,1,0,0,9
+,,44.4,277,NA,NA,NA,NA,NA,NA
+,,68.2,33.4,NA,NA,NA,NA,NA,NA
+,,486,24.6,NA,NA,NA,NA,NA,NA
+,,50.9,43.2,NA,NA,NA,NA,NA,NA
+Tecomanthe speciousa,New Zealand,141.6,92.7,0,0,1,0,0,9
+,,126.3,74.3,NA,NA,NA,NA,NA,NA
+,,130.6,92.8,NA,NA,NA,NA,NA,NA
+,,151.5,103.5,NA,NA,NA,NA,NA,NA
+,,134.6,86,NA,NA,NA,NA,NA,NA
+Fuchsia procumbens,New Zealand,161,17.2,0,0,0,0,0,9
+,,15.4,13.4,NA,NA,NA,NA,NA,NA
+,,17,15,NA,NA,NA,NA,NA,NA
+Rhododendron scopulorum,Himalayas,80,30.6,0,1,1,0,0,9
+,,92.6,40.8,NA,NA,NA,NA,NA,NA
+,,71.2,23.9,NA,NA,NA,NA,NA,NA
+Rhododendron formosum,Himalayas,53.6,14.6,0,0,0,0,0,9
+,,40.1,10.1,NA,NA,NA,NA,NA,NA
+,,43.6,12.3,NA,NA,NA,NA,NA,NA
+Dichroa versicolor,Himalayas,275,127.9,1,0,0,0,0,9
+,,215.7,92.6,NA,NA,NA,NA,NA,NA
+,,214.7,98.1,NA,NA,NA,NA,NA,NA
+Correa alba,Australia,27.9,21.1,0,1,0,0,0,9
+,,30.2,23.2,NA,NA,NA,NA,NA,NA
+,,27.3,21.1,NA,NA,NA,NA,NA,NA
+Banksia spinulosa,Australia,62.7,6.5,1,0,0,0,0,9
+,,46.2,6.3,NA,NA,NA,NA,NA,NA
+,,39.7,4.9,NA,NA,NA,NA,NA,NA
+Melaleuca virens,Australia,15.7,3,0,0,1,0,0,9
+,,17.5,3,NA,NA,NA,NA,NA,NA
+,,18.3,5.3,NA,NA,NA,NA,NA,NA
+Brassaiopsis,Asia,402,446.8,1,0,1,0,1,9
+,,178.5,332.6,NA,NA,NA,NA,NA,NA
+,,418.8,682.2,NA,NA,NA,NA,NA,NA
+Dichroa x aff. versicolor,Asia,111.9,43.9,0,0,0,0,0,9
+,,53.5,25.6,NA,NA,NA,NA,NA,NA
+,,71.3,30.7,NA,NA,NA,NA,NA,NA
+Begonia longifolia,Asia,157,779,1,0,1,0,0,9
+,,95.6,38.8,NA,NA,NA,NA,NA,NA
+,,148.2,69.1,NA,NA,NA,NA,NA,NA
+Afrocarpus falcatus,Africa,412,6.8,0,0,1,0,0,9
+,,44.4,5.5,NA,NA,NA,NA,NA,NA
+,,35.1,6.4,NA,NA,NA,NA,NA,NA
+Plectranthus barbatus var. grandis,Africa,43.4,30.2,1,1,0,0,0,9
+,,54.5,41.5,NA,NA,NA,NA,NA,NA
+,,44.3,30.1,NA,NA,NA,NA,NA,NA
+Greyia radlkoferi,Africa,170.9,145.9,0,0,1,0,0,9
+,,208.9,209.3,NA,NA,NA,NA,NA,NA
+,,197,209.2,NA,NA,NA,NA,NA,NA
+Freylinia Lanceolata,Africa,80.1,7.2,0,0,0,0,0,10
+,,84.6,9.1,NA,NA,NA,NA,NA,NA
+,,113.8,10.1,NA,NA,NA,NA,NA,NA
+,,147.2,10.3,NA,NA,NA,NA,NA,NA
+,,92.6,7.9,NA,NA,NA,NA,NA,NA
+Clivia miniata,Africa,428.6,31.3,0,0,1,0,1,10
+,,398.7,35.8,NA,NA,NA,NA,NA,NA
+,,483.3,48.1,NA,NA,NA,NA,NA,NA
+,,353.4,37.5,NA,NA,NA,NA,NA,NA
+,,439,46.1,NA,NA,NA,NA,NA,NA
+Pelargonium glutinosum,Africa,94.3,131.3,1,0,1,0,0,10
+,,102.9,129,NA,NA,NA,NA,NA,NA
+,,108.9,125.9,NA,NA,NA,NA,NA,NA
+,,97,135.8,NA,NA,NA,NA,NA,NA
+,,107.8,140.3,NA,NA,NA,NA,NA,NA
+Fuchsia fulgens,Americas,115.9,88,1,1,0,0,0,10
+,,139,90,NA,NA,NA,NA,NA,NA
+,,138.8,110.4,NA,NA,NA,NA,NA,NA
+,,137.6,88.5,NA,NA,NA,NA,NA,NA
+,,114.5,108.3,NA,NA,NA,NA,NA,NA
+Salvia elegans,Americas,30,16.4,1,1,0,0,0,10
+,,32.2,19.2,NA,NA,NA,NA,NA,NA
+,,50.2,24,NA,NA,NA,NA,NA,NA
+,,55.4,26,NA,NA,NA,NA,NA,NA
+,,47.4,24.8,NA,NA,NA,NA,NA,NA
+Fuchsia denticulata,Americas,77.7,30.6,1,0,1,0,0,10
+,,81.5,33.7,NA,NA,NA,NA,NA,NA
+,,67.3,30.4,NA,NA,NA,NA,NA,NA
+,,71,33,NA,NA,NA,NA,NA,NA
+,,65.7,54.7,NA,NA,NA,NA,NA,NA
+Libertia grandiflora,New Zealand,757.8,14.9,0,0,0,0,0,10
+,,820.1,12,NA,NA,NA,NA,NA,NA
+,,614.5,11.5,NA,NA,NA,NA,NA,NA
+,,616.6,10.5,NA,NA,NA,NA,NA,NA
+,,604.4,14.8,NA,NA,NA,NA,NA,NA
+Melicope ternata,New Zealand,112.2,54.5,0,0,1,1,0,10
+,,114.2,58.1,NA,NA,NA,NA,NA,NA
+,,83.6,49.3,NA,NA,NA,NA,NA,NA
+,,105.9,53.8,NA,NA,NA,NA,NA,NA
+,,111.5,57.8,NA,NA,NA,NA,NA,NA
+Meryta sinclairii,New Zealand,402.9,213.4,0,0,1,0,0,10
+,,341.4,199.2,NA,NA,NA,NA,NA,NA
+,,412.6,206.6,NA,NA,NA,NA,NA,NA
+,,328.6,181.1,NA,NA,NA,NA,NA,NA
+,,383.6,194.5,NA,NA,NA,NA,NA,NA
+Pollia crispata,Australia,195.1,36.6,0,0,1,0,1,10
+,,203.4,43.9,NA,NA,NA,NA,NA,NA
+,,189.8,33,NA,NA,NA,NA,NA,NA
+,,189.4,38.8,NA,NA,NA,NA,NA,NA
+,,191.7,35.7,NA,NA,NA,NA,NA,NA
+Correa 'Dusky bells',Australia,38.6,21,0,0,0,0,0,10
+,,35.4,19.3,NA,NA,NA,NA,NA,NA
+,,39,19.6,NA,NA,NA,NA,NA,NA
+,,35.4,19.5,NA,NA,NA,NA,NA,NA
+,,41.4,24.4,NA,NA,NA,NA,NA,NA
+Viola hederacea,Australia,33.3,44.6,0,0,1,0,0,10
+,,36.9,44.2,NA,NA,NA,NA,NA,NA
+,,42,47.5,NA,NA,NA,NA,NA,NA
+,,35.1,47,NA,NA,NA,NA,NA,NA
+,,44,52.3,NA,NA,NA,NA,NA,NA
+Rhododendron Formosum var formosum,Himalayas,78.8,20.5,0,0,0,1,0,10
+,,78.9,17.6,NA,NA,NA,NA,NA,NA
+,,87.5,21.3,NA,NA,NA,NA,NA,NA
+,,75.5,13.7,NA,NA,NA,NA,NA,NA
+,,81,15.9,NA,NA,NA,NA,NA,NA
+Strobilanthes glutinosus,Himalayas,140.2,67,1,1,0,0,0,10
+,,144.9,76,NA,NA,NA,NA,NA,NA
+,,137.1,77.8,NA,NA,NA,NA,NA,NA
+,,179.1,77.8,NA,NA,NA,NA,NA,NA
+,,162.2,82.1,NA,NA,NA,NA,NA,NA
+Brugmansia fantasticos,Himalayas,106.2,45.7,0,1,0,0,0,10
+,,98.6,40.2,NA,NA,NA,NA,NA,NA
+,,93.4,38,NA,NA,NA,NA,NA,NA
+,,90.5,36,NA,NA,NA,NA,NA,NA
+,,97.9,43.2,NA,NA,NA,NA,NA,NA
+Agapetes,Asia,245.4,104.3,0,0,1,0,0,10
+,,280.7,129.9,NA,NA,NA,NA,NA,NA
+,,204.4,100.7,NA,NA,NA,NA,NA,NA
+,,262.6,104.3,NA,NA,NA,NA,NA,NA
+,,264.7,119.9,NA,NA,NA,NA,NA,NA
+Gold Fuchsia Pentastemonoldes,Asia,165.5,64.3,1,1,0,0,0,10
+,,183.5,57.5,NA,NA,NA,NA,NA,NA
+,,202.2,60.9,NA,NA,NA,NA,NA,NA
+,,180.3,58.4,NA,NA,NA,NA,NA,NA
+,,185.7,69.4,NA,NA,NA,NA,NA,NA
+Camellia kissii,Asia,73.5,37.5,1,0,1,0,0,10
+,,84,43,NA,NA,NA,NA,NA,NA
+,,100.8,49.9,NA,NA,NA,NA,NA,NA
+,,67.8,38.9,NA,NA,NA,NA,NA,NA
+,,82.6,38.6,NA,NA,NA,NA,NA,NA
+Calothamnus sanguineus,Western Australia,23.6,0.7,1,1,0,0,0,10
+,,24.2,0.8,NA,NA,NA,NA,NA,NA
+,,26.8,0.9,NA,NA,NA,NA,NA,NA
+,,28.4,0.8,NA,NA,NA,NA,NA,NA
+,,22,0.9,NA,NA,NA,NA,NA,NA
+Hakea multilineata,Western Australia,176.5,9.3,0,0,0,0,0,10
+,,153.2,9.5,NA,NA,NA,NA,NA,NA
+,,146,9.4,NA,NA,NA,NA,NA,NA
+,,180.3,9.3,NA,NA,NA,NA,NA,NA
+,,174,6.7,NA,NA,NA,NA,NA,NA
+Melaleucea quadrifida,Western Australia,23,1.1,1,1,0,0,0,10
+,,24.2,0.9,NA,NA,NA,NA,NA,NA
+,,25.4,1.3,NA,NA,NA,NA,NA,NA
+,,25.9,1,NA,NA,NA,NA,NA,NA
+,,26,0.9,NA,NA,NA,NA,NA,NA
+Pomaderris vacciniifolia,Australia,18.3,9.6,0,0,1,1,0,2
+,,15.4,8.9,NA,NA,NA,NA,NA,NA
+,,20.1,10.6,NA,NA,NA,NA,NA,NA
+,,26.6,15.9,NA,NA,NA,NA,NA,NA
+,,22.1,11.9,NA,NA,NA,NA,NA,NA
+Macadamia intergrifolia,Australia,114.9,36.2,0,0,1,0,0,2
+,,116.9,31.2,NA,NA,NA,NA,NA,NA
+,,148.9,43.7,NA,NA,NA,NA,NA,NA
+,,157,40.2,NA,NA,NA,NA,NA,NA
+,,150.3,52.1,NA,NA,NA,NA,NA,NA
+Hardenbergia comptoniana,Australia,88.8,33.4,0,0,0,0,0,2
+,,37.9,27.6,NA,NA,NA,NA,NA,NA
+,,36.2,29.9,NA,NA,NA,NA,NA,NA
+,,75.7,31.8,NA,NA,NA,NA,NA,NA
+,,101.9,30.5,NA,NA,NA,NA,NA,NA
+Hedychium coccineum,Asia,456.8,60.7,0,0,1,0,1,2
+,,510.1,62.4,NA,NA,NA,NA,NA,NA
+,,456.8,70,NA,NA,NA,NA,NA,NA
+,,401.6,64.3,NA,NA,NA,NA,NA,NA
+,,448.3,47.1,NA,NA,NA,NA,NA,NA
+Camellia sinensis,Asia,110.5,55.8,1,0,1,0,0,2
+,,117.3,57.1,NA,NA,NA,NA,NA,NA
+,,123.7,65.2,NA,NA,NA,NA,NA,NA
+,,131.4,61.7,NA,NA,NA,NA,NA,NA
+,,128.6,66.8,NA,NA,NA,NA,NA,NA
+Trachycarpus manipur,Asia,576.6,31.1,0,0,1,0,1,2
+,,606.8,28,NA,NA,NA,NA,NA,NA
+,,610.1,29.7,NA,NA,NA,NA,NA,NA
+,,598.9,26,NA,NA,NA,NA,NA,NA
+,,713.5,25.8,NA,NA,NA,NA,NA,NA
+Tradescantia pallida,Americas,106.5,38.1,0,1,0,0,1,2
+,,105.2,35,NA,NA,NA,NA,NA,NA
+,,99.7,30.9,NA,NA,NA,NA,NA,NA
+,,152.4,45.1,NA,NA,NA,NA,NA,NA
+,,128.6,30.6,NA,NA,NA,NA,NA,NA
+Salvia apiana,Americas,108.5,33.9,1,0,0,0,0,2
+,,111.5,45.2,NA,NA,NA,NA,NA,NA
+,,113.8,39.1,NA,NA,NA,NA,NA,NA
+,,122.7,41.9,NA,NA,NA,NA,NA,NA
+,,102.6,39.2,NA,NA,NA,NA,NA,NA
+Justicia rizzinii,Americas,32.8,17.8,0,0,1,1,0,2
+,,30.6,15.2,NA,NA,NA,NA,NA,NA
+,,33.8,17.3,NA,NA,NA,NA,NA,NA
+,,33.8,15.2,NA,NA,NA,NA,NA,NA
+,,29.4,18.4,NA,NA,NA,NA,NA,NA
+Melaleuca rhaphiophylla,Western Australia,16.4,0.7,0,0,1,0,0,8
+,,23.2,0.9,NA,NA,NA,NA,NA,NA
+,,19,0.7,NA,NA,NA,NA,NA,NA
+Melaleuca quadrifida,Western Australia,31,0.8,0,0,1,0,0,8
+,,47,0.8,NA,NA,NA,NA,NA,NA
+,,82.1,1,NA,NA,NA,NA,NA,NA
+Banksia brownii,Western Australia,109.3,10.5,0,0,1,1,0,8
+,,81,9.6,NA,NA,NA,NA,NA,NA
+,,120.9,10.2,NA,NA,NA,NA,NA,NA
+Tradescantia standleyi,Americas,105.7,40.5,0,1,0,0,0,8
+,,108.7,35.1,NA,NA,NA,NA,NA,NA
+,,93,38.5,NA,NA,NA,NA,NA,NA
+Salvia apiana,Americas,114,39.2,1,0,1,0,0,8
+,,107.7,30.5,NA,NA,NA,NA,NA,NA
+,,117.3,37.7,NA,NA,NA,NA,NA,NA
+Maytenus ilicifolia,Americas,90.2,30.1,1,0,1,0,0,8
+,,71.9,34.8,NA,NA,NA,NA,NA,NA
+,,86.9,20.9,NA,NA,NA,NA,NA,NA
+Clivia robusta,Africa,658.8,47.8,0,0,1,0,1,8
+,,518.5,36.2,NA,NA,NA,NA,NA,NA
+,,526.5,41.6,NA,NA,NA,NA,NA,NA
+Erica verticillata,Africa,6.1,0.6,0,0,1,0,0,8
+,,5.1,0.4,NA,NA,NA,NA,NA,NA
+,,3.1,0.4,NA,NA,NA,NA,NA,NA
+Melianthus comosus,Africa,69.1,26.2,1,0,0,0,0,8
+,,62.3,25.9,NA,NA,NA,NA,NA,NA
+,,54.5,21.9,NA,NA,NA,NA,NA,NA
+Astelia banksii,New Zealand,1188.5,47.6,0,1,1,0,1,8
+,,1206.1,42.5,NA,NA,NA,NA,NA,NA
+,,1889,49.6,NA,NA,NA,NA,NA,NA
+Cyathea medullaris,New Zealand,289.3,94.6,1,0,1,1,1,8
+,,418.6,144,NA,NA,NA,NA,NA,NA
+,,515.6,156.8,NA,NA,NA,NA,NA,NA
+Lonicera hildebrandiana,New Zealand,110.3,77.8,0,0,1,0,0,8
+,,102.8,61.1,NA,NA,NA,NA,NA,NA
+,,124,61.7,NA,NA,NA,NA,NA,NA
+Begonia longifolia,Asia,170.4,64.4,1,0,1,0,0,8
+,,107.5,52.5,NA,NA,NA,NA,NA,NA
+,,109.4,58.7,NA,NA,NA,NA,NA,NA
+Rhododendron lyi,Asia,110.3,37.2,0,0,1,0,0,8
+,,95.1,33.2,NA,NA,NA,NA,NA,NA
+,,95.5,32.2,NA,NA,NA,NA,NA,NA
+Magnolia champaca,Asia,306.8,111.7,0,0,1,0,0,8
+,,335.8,137.7,NA,NA,NA,NA,NA,NA
+,,279.2,102.4,NA,NA,NA,NA,NA,NA
+Rhododendron ciliatum,Himalayas,56.5,20.3,0,1,1,0,0,8
+,,72.8,31.2,NA,NA,NA,NA,NA,NA
+,,89.9,32.8,NA,NA,NA,NA,NA,NA
+Impatiens balansae,Himalayas,236.6,64.1,0,0,1,0,0,8
+,,277.9,78.2,NA,NA,NA,NA,NA,NA
+,,251.3,82.3,NA,NA,NA,NA,NA,NA
+Persicaria capitata,Himalayas,53.6,32.5,0,1,0,0,0,8
+,,56.8,33.2,NA,NA,NA,NA,NA,NA
+,,52.7,31.6,NA,NA,NA,NA,NA,NA
+Geitonoplesium cymosum,Australia,89.8,22.8,0,0,1,0,0,8
+,,84.8,20,NA,NA,NA,NA,NA,NA
+,,75.1,11.4,NA,NA,NA,NA,NA,NA
+Melaleuca wimmerensis,Australia,74.9,7.3,0,0,0,0,0,8
+,,70.8,7.1,NA,NA,NA,NA,NA,NA
+,,64.4,6.8,NA,NA,NA,NA,NA,NA
+Plectranthus argentatus,Australia,36.4,5,1,1,0,0,0,8
+,,23.1,9.3,NA,NA,NA,NA,NA,NA
+,,25.2,9,NA,NA,NA,NA,NA,NA

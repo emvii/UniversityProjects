@@ -1,0 +1,159 @@
+"Species","Continent","Serrated.Smooth","Hairy.Non.hairy","Waxy.Non.waxy","Compound.Simple","Central.Auxiliary","Leaf.Length","Leaf.Width"
+"Freylinia Lanceolata","Africa","0","0","0","0","0",80.1,7.2
+"Cestrum psittacinum","Americas","0","0","0","0","0",117.2,46.6
+"Cuphea ignea","Americas","0","0","0","0","0",34,16.1
+"Deppea splendens","Americas","0","0","0","0","0",144.7,57
+"Dichroa x aff. versicolor","Asia","0","0","0","0","0",111.9,43.9
+"Correa 'Dusky bells'","Australia","0","0","0","0","0",38.6,21
+"Correa 'Dusky Bells'","Australia","0","0","0","0","0",30.7,17.7
+"Hardenbergia comptoniana","Australia","0","0","0","0","0",88.8,33.4
+"Melaleuca wimmerensis","Australia","0","0","0","0","0",74.9,7.3
+"Rhododendron formosum","Himalayas","0","0","0","0","0",53.6,14.6
+"Corokia x virgata","New Zealand","0","0","0","0","0",32.8,21.5
+"Fuchsia procumbens","New Zealand","0","0","0","0","0",161,17.2
+"Libertia grandiflora","New Zealand","0","0","0","0","0",757.8,14.9
+"Hakea multilineata","Western Australia","0","0","0","0","0",176.5,9.3
+"Hardenbergia comptoniana","Western Australia","0","0","0","0","0",85.7,23.6
+"Stylidium adnatum","Western Australia","0","0","0","0","0",6.1,1.6
+"Melianthus comosus","Africa","1","0","0","0","0",69.1,26.2
+"Eupatorium riparium","Americas","1","0","0","0","0",79,32.8
+"Salvia apiana","Americas","1","0","0","0","0",108.5,33.9
+"Salvia divinorum","Americas","1","0","0","0","0",192,74.7
+"Salvia purpurea","Americas","1","0","0","0","0",115.2,66.6
+"Hibiscus hamabo","Asia","1","0","0","0","0",81.3,103.4
+"Banksia spinulosa","Australia","1","0","0","0","0",62.7,6.5
+"Dichroa versicolor","Himalayas","1","0","0","0","0",275,127.9
+"Fuchsia procumbens","New Zealand","1","0","0","0","0",16.7,17
+"Dombeya rotundifolia","Africa","0","1","0","0","0",68.8,72.5
+"Cestrum fasciculatum","Americas","0","1","0","0","0",103.9,48.5
+"Phymosia rosea","Americas","0","1","0","0","0",156.6,190.8
+"Tibouchina urvilleana","Americas","0","1","0","0","0",158.5,88
+"Tradescantia standleyi","Americas","0","1","0","0","0",105.7,40.5
+"Correa alba","Australia","0","1","0","0","0",27.9,21.1
+"Brugmansia fantasticos","Himalayas","0","1","0","0","0",106.2,45.7
+"Persicaria capitata","Himalayas","0","1","0","0","0",51.35,28.75
+"Thomasia solanacea","Western Australia","0","1","0","0","0",54.2,57.7
+"Plectranthus barbatus var. grandis","Africa","1","1","0","0","0",43.4,30.2
+"Cuphea ignea","Americas","1","1","0","0","0",74.3,44.3
+"Fuchsia fulgens","Americas","1","1","0","0","0",115.9,88
+"Salvia elegans","Americas","1","1","0","0","0",30,16.4
+"Salvia purpurea","Americas","1","1","0","0","0",118.4,77.8
+"Callicarpa aff. tomentosa","Asia","1","1","0","0","0",225,156.8
+"Gold Fuchsia Pentastemonoldes","Asia","1","1","0","0","0",165.5,64.3
+"Hibiscus hamabo","Asia","1","1","0","0","0",73.7,81
+"Plectranthus argentatus","Australia","1","1","0","0","0",36.4,5
+"Strobilanthes glutinosus","Himalayas","1","1","0","0","0",133.65,67.1
+"Calothamnus sanguineus","Western Australia","1","1","0","0","0",23.6,0.7
+"Hibbertia grossulariifolia","Western Australia","1","1","0","0","0",49.7,26.3
+"Melaleucea quadrifida","Western Australia","1","1","0","0","0",23,1.1
+"Acridocarpus natalitius","Africa","0","0","1","0","0",77.7,25.6
+"Afrocarpus falcatus","Africa","0","0","1","0","0",412,6.8
+"Aristea compressa","Africa","0","0","1","0","0",174.6,13.3
+"Erica verticillata","Africa","0","0","1","0","0",6.1,0.6
+"Greyia radlkoferi","Africa","0","0","1","0","0",170.9,145.9
+"Pterocelastrus tricuspidatus","Africa","0","0","1","0","0",47.7,28.2
+"Hibiscus splendens","Americas","0","0","1","0","0",115.9,48.8
+"Agapetes","Asia","0","0","1","0","0",245.4,104.3
+"Ficus henryi","Asia","0","0","1","0","0",174.9,60.5
+"Magnolia champaca","Asia","0","0","1","0","0",306.8,111.7
+"Maytenus royleana","Asia","0","0","1","0","0",41.6,20.9
+"Rhododendron lyi","Asia","0","0","1","0","0",94.65,34.2
+"Trachelospermum asiaticum","Asia","0","0","1","0","0",81.5,34.6
+"Geitonoplesium cymosum","Australia","0","0","1","0","0",89.8,22.8
+"Gynochthodes jasminoides","Australia","0","0","1","0","0",80.5,43.5
+"Lagunaria patersonia","Australia","0","0","1","0","0",121.2,45.1
+"Leptospermum polygalifolium","Australia","0","0","1","0","0",12.2,1.8
+"Macadamia intergrifolia","Australia","0","0","1","0","0",114.9,36.2
+"Macedamia integrifolia","Australia","0","0","1","0","0",116.1,40
+"Melaleuca virens","Australia","0","0","1","0","0",15.7,3
+"Viola hederacea","Australia","0","0","1","0","0",33.3,44.6
+"Impatiens balansae","Himalayas","0","0","1","0","0",236.6,64.1
+"Polygonatum oppositifolium","Himalayas","0","0","1","0","0",75.8,40.2
+"Lonicera hildebrandiana","New Zealand","0","0","1","0","0",110.3,77.8
+"Meryta sinclairii","New Zealand","0","0","1","0","0",402.9,213.4
+"Metrosideros robusta","New Zealand","0","0","1","0","0",49.7,18.6
+"Metrosideros tomentosa","New Zealand","0","0","1","0","0",40.7,199
+"Passiflora tetrandra","New Zealand","0","0","1","0","0",90.1,29.1
+"Solanum aviculare","New Zealand","0","0","1","0","0",130.8,41.5
+"Tecomanthe speciousa","New Zealand","0","0","1","0","0",141.6,92.7
+"Banksia brownii","Western Australia","0","0","1","0","0",146.2,10.7
+"Hakea laurina","Western Australia","0","0","1","0","0",113.1,13.9
+"Melaleuca quadrifida","Western Australia","0","0","1","0","0",31,0.8
+"Melaleuca rhaphiophylla","Western Australia","0","0","1","0","0",16.4,0.7
+"Curonia capensis","Africa","1","0","1","0","0",85,26.8
+"Dermatobotrys saundersii","Africa","1","0","1","0","0",111.5,57.7
+"Pelargonium glutinosum","Africa","1","0","1","0","0",94.3,131.3
+"Fuchsia denticulata","Americas","1","0","1","0","0",77.7,30.6
+"Maytenus ilicifolia","Americas","1","0","1","0","0",90.2,30.1
+"Mitraria coccinea","Americas","1","0","1","0","0",20.3,11.9
+"Oreopanax peltatus","Americas","1","0","1","0","0",258,200
+"Salvia apiana","Americas","1","0","1","0","0",114,39.2
+"Begonia longifolia","Asia","1","0","1","0","0",163.7,421.7
+"Brassaiopsis ","Asia","1","0","1","0","0",509,814.4
+"Camellia kissii","Asia","1","0","1","0","0",73.5,37.5
+"Camellia sinensis","Asia","1","0","1","0","0",110.5,55.8
+"Ficus Tikoua var. laevis","Asia","1","0","1","0","0",104.1,49.5
+"Aphanopetaum resinosum","Australia","1","0","1","0","0",51.5,25.3
+"Banksia montana","Australia","1","0","1","0","0",116.1,30
+"Pittosporum multiflorum","Australia","1","0","1","0","0",6.7,4.7
+"Dichroa versicolor","Himalayas","1","0","1","0","0",273,120.3
+"Hibbertia grossulariifolia","Western Australia","1","0","1","0","0",38,31.2
+"Mundulea stenophylla","Africa","0","1","1","0","0",54,4.7
+"Correa alba","Australia","0","1","1","0","0",36.9,30.2
+"Metrosideros nervulosa","Australia","0","1","1","0","0",35.5,24.9
+"Rhododendron ciliatum","Himalayas","0","1","1","0","0",63.65,21.1
+"Rhododendron scopulorum","Himalayas","0","1","1","0","0",77.9333333333333,32.5
+"Metrosideros tomentosa","New Zealand","0","1","1","0","0",43.1,17.7
+"Calothamnus sanguineus","Western Australia","0","1","1","0","0",19,0.8
+"Melaleuca quadrifida","Western Australia","0","1","1","0","0",24.8,0.7
+"Rhododendron Formosum var formosum","Himalayas","0","0","0","1","0",78.8,20.5
+"Olearia Astrolobia","Western Australia","0","0","0","1","0",13,5.9
+"Rosa abyssinica","Africa","1","0","0","1","0",36.5,13.7
+"Tecomaria capensis","Africa","1","0","0","1","0",28.9,20.9
+"Acaena novae-zelandiae","New Zealand","1","0","0","1","0",12.8,5.3
+"Dicksonia fibosa","New Zealand","1","0","0","1","0",28.4,7.2
+"Mundulea stenophylla","Africa","0","0","1","1","0",42.5,10.4
+"Justicia rizzinii","Americas","0","0","1","1","0",32.8,17.8
+"Pyrrosia lingua","Asia","0","0","1","1","0",89.3,31.5
+"Taxus wallichiana","Asia","0","0","1","1","0",21.2,1.3
+"Pandorea pandorana","Australia","0","0","1","1","0",130.9,106.4
+"Pomaderris vacciniifolia","Australia","0","0","1","1","0",18.3,9.6
+"Senna artemisioides","Australia","0","0","1","1","0",23.5,1
+"Rhododendron Formosum var. formosum","Himalayas","0","0","1","1","0",65.5,20.4
+"Melicope ternata","New Zealand","0","0","1","1","0",112.2,54.5
+"Banksia brownii","Western Australia","0","0","1","1","0",109.3,10.5
+"Aristea ensifolia","Africa","0","0","0","0","1",610.8,17.1
+"Hypericum aegypticum","Africa","0","0","0","0","1",18.9,7
+"Polygonatum oppositifolium","Himalayas","0","0","0","0","1",85.4,39.7
+"Salvia purpurea","Americas","1","0","0","0","1",139.6,77.2
+"Tradescantia pallida","Americas","0","1","0","0","1",106.5,38.1
+"Rubus moluccanus","Asia","1","1","0","0","1",165.4,178.7
+"Aristea platycaulis","Africa","0","0","1","0","1",306.8,32
+"Clivia miniata","Africa","0","0","1","0","1",428.6,31.3
+"Clivia robusta","Africa","0","0","1","0","1",658.8,47.8
+"Strelitzia reginae","Africa","0","0","1","0","1",486.7,175.7
+"Canna indica","Americas","0","0","1","0","1",497.7,151.85
+"Hedychium coccineum","Asia","0","0","1","0","1",456.8,60.7
+"Rohdea japonica","Asia","0","0","1","0","1",324.1,56.2
+"Trachycarpus manipur","Asia","0","0","1","0","1",576.6,31.1
+"Macadamia integrifolia","Australia","0","0","1","0","1",109.7,29.4
+"Olearia pannosa","Australia","0","0","1","0","1",80.1,43.1
+"Pollia crispata","Australia","0","0","1","0","1",172,39.25
+"Hedychium gardnerianum","Himalayas","0","0","1","0","1",372.1,111.5
+"Rhododendron formosum","Himalayas","0","0","1","0","1",85,18.2
+"Freycinetia banksii","New Zealand","0","0","1","0","1",750,18.5
+"Hebe corriganii","New Zealand","0","0","1","0","1",109.7,26.4
+"Stylidium adnatum","Western Australia","0","0","1","0","1",13,2.3
+"Brassaiopsis","Asia","1","0","1","0","1",402,446.8
+"Dichroa versicolor","Himalayas","1","0","1","0","1",280,128
+"Olearia astroloba","Western Australia","1","0","1","0","1",12.8,6.6
+"Astelia banksii","New Zealand","0","1","1","0","1",1188.5,47.6
+"Jubaea chilensis","Americas","0","0","0","1","1",2850.4,1018
+"Cyathea medullaris","New Zealand","1","0","0","1","1",1119.8,814.4
+"Dicksonia fibrosa","New Zealand","1","0","0","1","1",814.4,712.6
+"Afrocarpus falcatus","Africa","0","0","1","1","1",57,5
+"Arisaema tortuosum","Asia","0","0","1","1","1",454,39.3
+"Elingamita johnsonii","New Zealand","0","0","1","1","1",156.5,80.4
+"Dicksonia antarctica","Australia","1","0","1","1","1",296,69.1
+"Cyathea medullaris","New Zealand","1","0","1","1","1",289.3,94.6
+"Marattia salicina","New Zealand","1","0","1","1","1",440,242.1

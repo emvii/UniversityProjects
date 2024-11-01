@@ -1,0 +1,683 @@
+---
+title: "BIOL0042 Temperate Zone Workshop Assignment"
+output:
+  word_document: default
+  pdf_document: default
+date: "2024-03-13"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include=FALSE}
+setwd(".")
+
+```
+
+# Temperate Zones: Investigating Convergence versus Non-convergence
+
+------------------------------------------------------------------------
+
+## Introduction
+
+The field of comparative plant morphology posits that limited optimal adaptive solutions in similar climatic zones lead to high levels of convergent evolution among organisms (Cody and Mooney, 1978). However, this theory faces disputes due to various factors such as migration, extinction, and speciation (Verdú *et al.*, 2003). Additionally, similarities previously attributed to convergent evolution in Mediterranean lineages were revealed to be influenced by phylogenetic and historical constraints (Verdú *et al.*, 2003).
+
+This study seeks to evaluate differences in plant traits across temperate biogeographic regions. With a hypothesis centered on evolutionary convergence, we anticipate observing similar trait averages and variances among plants across different temperate regions.
+
+## Materials and Methods
+
+We randomly sampled and obtained quantitative and qualitative measurements from plant species in Temperate House, Kew Royal Botanical Gardens (RBG Kew), Richmond in February 2024. For each individual we measured the length and width of its leaves and scored them on 7 different qualitative characters as outlined in table 1. Each quantitative measurement was repeated three or more times in order to produce an average leaf measurement for each individual.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+if (!requireNamespace("knitr", quietly = TRUE)) {
+  install.packages("knitr")
+}
+
+library(knitr)
+
+# Data frame
+my_dataframe <- data.frame(
+  Column1 = c("Species", "Continent", "Leaf.LW","Leaf.abs", "Serrated.Smooth","Hairy.Non.hairy","Waxy.Non.waxy","Compound.Simple","Central.Auxiliary"),
+  Column2 = c("Binomial name of plant", "The plant's native temperate region", "The ratio of leaf length to leaf width for each individual", "Absolute area (L*W) of each leaf", "Presence (1) or absence (0) of serrated edges on leaves", "Presence (1) or absence (0) of hair or fuzz on leaves", "Presence (1) or absence (0) of waxy coating on leaves", "Presence (1) or absence (0) of compound leaf structure", "Presence (0) or absence (1) of auxiliary structures (e.g. stipules)"),
+  Column3 = c("Species name", "Native floristic zone (1-7†)", "3-5 Numerical measurements (mm)", "3-5 Numerical measurements (mm²)", "Presence/Absence","Presence/Absence","Presence/Absence","Presence/Absence","Presence/Absence")
+)
+
+# Print the modified data frame
+kable(my_dataframe, format = "markdown", col.names = c("Observation", "Description", "Measurement"))
+```
+
+*Table 1: Outline of the data structure. Each individual's binomial name and native temperate region was recorded based on its associated label in the Temperate House at RBG Kew. The 7 temperate zones† include Africa, the Americas, Asia, the Himalayas, Australia, Western Australia, and New Zealand.*
+
+Statistical analyses were carried out in R version 4.1.2. PCA was used to assess which combinations of variables contributed most significantly to the morphological differences between temperate zones. Before running PCA we pre-processed the data by calculating the average leaf lengths and widths for each plant species. The separate measures of leaf length and width were used to calculate the metrics leaf length to width ratio (leaf length:width) and absolute leaf size (leaf length\*width) as both of these allowed us capture information about the species-specific morphological diversity more extensively, with leaf length:width focusing on shape-related characteristics and leaf length\*width focusing on size-related characteristics. The outlier length and width measurements were kept as these had no effect on the integrity of the data or the robustness of our analyses.
+
+Following visual inspections of the PCA biplots and other diagnostic plots, leaf length:width and leaf waxiness were the only traits identified as heteroscedastic variables, and were subsequently bootstrapped for additional rigor. We fitted linear models of the different traits against temperate zones. ANOVAs conducted across the individual traits identified leaf waxiness and the correlated measurements of leaf length and leaf width to be key defining characteristics which differentiate plants from different temperate zones.
+
+## Results
+
+```{r, include=FALSE}
+# "Some plant families are more widely dispersed than others. The ones that are more dispersed have better dispersal mechanisms, economic value, or geological (tectonic) history."
+
+# Frequency Distributions
+
+# Calculate frequency distribution for Widely distributed families
+widely_distributed_freq <- table(fam$`Widely.distributed`)
+
+# Calculate frequency distribution for Narrowly distributed families
+narrowly_distributed_freq <- table(fam$`Narrowly.distributed`)
+```
+
+```{r, include=FALSE}
+# Display the frequency distributions
+print("Frequency distribution for Widely distributed families:")
+print(widely_distributed_freq)
+
+print("Frequency distribution for Narrowly distributed families:")
+print(narrowly_distributed_freq)
+```
+
+```{r, include=FALSE}
+# Chi Square test
+chi_sq_result <- chisq.test(widely_distributed_freq)
+print(chi_sq_result)
+
+# *Table 1: Results of the Chi-squared test. The difference in frequency of plants identified as widely distributed was deemed non-significant.*
+
+```
+
+```{r, include=FALSE}
+
+## 1 Editing the data
+
+traits <- read.csv("data/cleaned_traits_file.csv")
+
+# Converting character to numeric
+# So we can apply calculations on them
+traits$Leaf.Length <- as.numeric(traits$Leaf.Length)
+traits$Leaf.Width <- as.numeric(traits$Leaf.Width)
+
+# Group by species and calculate the mean leaf length and width
+avg_traits <- aggregate(cbind(Leaf.Length, Leaf.Width) ~ Species + Continent + Serrated.Smooth + Hairy.Non.hairy + Waxy.Non.waxy + Compound.Simple + Central.Auxiliary, traits, mean)
+
+# Adjusting data types
+
+avg_traits$Continent <- factor(avg_traits$Continent, levels = c("Africa", "Americas", "Asia", "Australia", "Himalayas", "New Zealand", "Western Australia"))
+avg_traits$Serrated.Smooth <- as.factor(avg_traits$Serrated.Smooth)
+avg_traits$Hairy.Non.hairy <- as.factor(avg_traits$Hairy.Non.hairy)
+avg_traits$Waxy.Non.waxy <- as.factor(avg_traits$Waxy.Non.waxy)
+avg_traits$Compound.Simple <- as.factor(avg_traits$Compound.Simple)
+avg_traits$Central.Auxiliary <- as.factor(avg_traits$Central.Auxiliary)
+
+write.csv(avg_traits, "traits_averaged.csv", row.names = FALSE)
+
+# Print the new data table
+print(avg_traits)
+```
+
+```{r, include=FALSE}
+## 2 Removing outliers
+
+library(gridExtra)
+library(ggplot2)
+
+# Creating Leaf.LW
+avg_traits$Leaf.LW <- avg_traits$Leaf.Length / avg_traits$Leaf.Width
+
+# Creating Leaf.abs
+avg_traits$Leaf.abs <- avg_traits$Leaf.Length * avg_traits$Leaf.Width
+
+# Create a data frame with Continent as a factor variable
+avg_traits$Continent <- factor(avg_traits$Continent)
+
+# Create the first scatter plot with boxplot
+plot1 <- ggplot(avg_traits, aes(x=Continent, y=Leaf.Length)) +
+  geom_boxplot(fill="lightblue", color="blue", width=0.5) +
+  geom_point(aes(color="Leaf Length"), size=2, position=position_jitter(width=0.1), show.legend = FALSE) +
+  labs(x="Temperate Region", y="Leaf.Length") +
+  scale_color_manual(values=c("darkblue")) +
+  theme_minimal()
+
+# Create the second scatter plot with boxplot
+plot2 <- ggplot(avg_traits, aes(x=Continent, y=Leaf.Width)) +
+  geom_boxplot(fill="pink", color="darkred", width=0.5) +
+  geom_point(aes(color="Leaf Width"), size=2, position=position_jitter(width=0.1), show.legend = FALSE) +
+  labs(x="Temperate Region", y="Leaf.Width") +
+  scale_color_manual(values=c("red")) +
+  theme_minimal()
+
+# Arrange the plots side by side
+grid.arrange(plot1, plot2, ncol=2)
+```
+
+```{r, include=FALSE}
+## 3 PCA On dataset
+
+k <- avg_traits
+
+
+k$Serrated.Smooth <- as.integer(k$Serrated.Smooth)
+k$Hairy.Non.hairy <- as.integer(k$Hairy.Non.hairy)
+k$Waxy.Non.waxy <- as.integer(k$Waxy.Non.waxy)
+k$Compound.Simple <- as.integer(k$Compound.Simple)
+k$Central.Auxiliary <- as.integer(k$Central.Auxiliary)
+k$Leaf.LW <- as.integer(k$Leaf.LW)
+k$Leaf.abs <- as.integer(k$Leaf.abs)
+
+#k <- k[, !colnames(k) %in% "Serrated.Smooth"] # Remove the Serrated.Smooth
+#k <- k[, !colnames(k) %in% "Hairy.Non.hairy"]  # Remove the Hairy.Non.hairy
+#k <- k[, !colnames(k) %in% "Waxy.Non.Waxy"]  # Remove the Waxy.Non.waxy
+#k <- k[, !colnames(k) %in% "Compound.Simple"]  # Remove the Compound.Simple
+#k <- k[, !colnames(k) %in% "Central.Auxiliary"]  # Remove the Central.Auxiliary
+k <- k[, !colnames(k) %in% "Leaf.Length"]  # Remove the Leaf.Length
+k <- k[, !colnames(k) %in% "Leaf.Width"]  # Remove the Leaf.Width
+#k <- k[, !colnames(k) %in% "Leaf.LW"]  # Remove the Leaf.LW
+#k <- k[, !colnames(k) %in% "Leaf.abs"]  # Remove the Leaf.abs
+
+m <- k
+
+# To look at different combinations of variables:
+
+numeric_cols <- m[, sapply(m, is.numeric)]
+
+m = scale(numeric_cols)
+
+p = prcomp(m, retx=TRUE, scale=TRUE) # PCA
+
+v = p$sdev^2
+pv = 100*v/sum(v)
+
+par(mar=par("mar")+ c(2,4,0,0))
+k = p$rotation
+pvs = sprintf("%s %.0f %s",colnames(k),pv,"%")
+
+k <- as.data.frame(k)
+
+# Lengths that push samples to the left side of the graph will have large negative values and genes that push samples to the right will have large positive values
+
+df_PCA <- cbind(avg_traits, p$x[,1:4]) # Make sure the second number = number of principle components you want to look at
+
+```
+
+```{r, echo=FALSE}
+barplot(pv,xlab="PC 1-7",
+  ylab="% variance", ylim=c(0,70), main = "% Variance explained by each principle component (PC)")
+```
+
+*Figure 1: The first 4 principle components capture approximately 70% the data, with PC1, at 23%, this is followed by PC2 (20%), PC3 (15%) and PC4 (12%).*
+
+```{r, echo=FALSE}
+## 4 PCA Biplots
+
+library("ggplot2")
+
+# PC1 + 2
+
+Continent <- df_PCA$Continent
+
+# Plot with ellipses and points
+pca_plot <- ggplot(df_PCA, aes(PC1, PC2, col = Continent)) +
+  stat_ellipse(geom = "polygon", aes(fill = Continent), col = "black", alpha = 0.3) +
+  geom_point(shape = 19, size = 2)  # Adjust size and shape here
+
+# Add segments and text
+combined_plot <- pca_plot +
+  geom_segment(data = k, aes(x = 0, y = 0, xend = (4.5 * PC1), yend = (4.5 * PC2)), 
+               arrow = arrow(length = unit(0.04, "npc")), color = "black", alpha = 0.5) + 
+  geom_text(data = k, aes(x = (4.5 * PC1), y = (4.5 * PC2), label = rownames(k)), 
+            hjust = 1, vjust = -0.2, color = "black") +
+  ggtitle("PC1 vs PC2 (Temperate Regions)")
+
+combined_plot
+
+
+# PC3 + 4
+
+Continent <- df_PCA$Continent
+
+# Plot with ellipses and points
+pca_plot <- ggplot(df_PCA, aes(PC3, PC4, col = Continent)) +
+  stat_ellipse(geom = "polygon", aes(fill = Continent), col = "black", alpha = 0.3) +
+  geom_point(shape = 19, size = 2)  # Adjust size and shape here
+
+# Add segments and text
+combined_plot <- pca_plot +
+  geom_segment(data = k, aes(x = 0, y = 0, xend = (4.5 * PC3), yend = (4.5 * PC4)), 
+               arrow = arrow(length = unit(0.04, "npc")), color = "black", alpha = 0.5) + 
+  geom_text(data = k, aes(x = (4.5 * PC3), y = (4.5 * PC4), label = rownames(k)), 
+            hjust = 1, vjust = -0.2, color = "black") +
+  ggtitle("PC3 vs PC4 (Temperate Regions)")
+
+combined_plot
+
+```
+
+*Figures 2 and 3: Principal component analysis (PCA) biplots for the trait dataset.*
+
+```{r, echo=FALSE}
+# 5 Analysing the results of the PCA
+
+if (!requireNamespace("stats", quietly = TRUE)) {
+  install.packages("stats")
+}
+
+library(stats)
+
+# Perform MANOVA
+manova_results <- manova(cbind(PC1, PC2, PC3, PC4) ~ Continent, data = df_PCA)
+
+# Capture MANOVA summary
+manova_summary <- summary(manova_results, signif.stars = FALSE)
+
+manova_summary
+
+```
+
+*Table 2: MANOVA test result for principle components 1 to 4 (PC1-PC4) across continents.*
+
+A MANOVA test (Table 2) was used to examine whether there are significant differences among biogeographical zones (‘continents’) in the multivariate response variables (Figures 2 and 3). Approximately 29.71% of the variance in the traits was explained by the Continent variable. The p-value indicates that there is significant evidence to reject the null hypothesis of no group differences (p\<0.05).
+
+```{r, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE}
+## 7 Length and Width Boxplots
+
+if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  install.packages("ggplot2")
+}
+library(ggplot2)
+
+if (!requireNamespace("gridExtra", quietly = TRUE)) {
+  install.packages("gridExtra")
+}
+library(gridExtra)
+
+
+if (!requireNamespace("dplyr", quietly = TRUE)) {
+  install.packages("dplyr")
+}
+library(dplyr)
+
+# out_1 <- boxplot.stats(avg_traits$Leaf.Width)$out
+# out_2 <- boxplot.stats(avg_traits$Leaf.Length)$out
+# out_3 <- boxplot.stats(avg_traits$Leaf.abs)$out
+# out_4 <- boxplot.stats(avg_traits$Leaf.LW)$out
+
+# Removal of outliers for plots
+# all_out <-c(out_1, out_2, out_3, out_4)
+# avg_traits[avg_traits$Leaf.Width %in% out_1, "Leaf.Width"] = NA
+# avg_traits[avg_traits$Leaf.Length %in% out_2, "Leaf.Length"] = NA
+# avg_traits[avg_traits$Leaf.LW %in% out_2, "Leaf.Length"] = NA
+# avg_traits[avg_traits$Leaf.abs %in% out_2, "Leaf.Length"] = NA
+# missing.rate <- apply(avg_traits, 1 ,function(x){ mean(is.na(x))})
+# w = which(missing.rate>0.01)
+# avg_traits = avg_traits[-(w),] 
+
+# Create the first scatter plot with boxplot
+plot1 <- ggplot(avg_traits, aes(x=factor(Continent), y=Leaf.Length)) +
+  geom_boxplot(fill="lightblue", color="blue", width=0.5) +
+  geom_point(aes(color="Leaf Length"), size=2, position=position_jitter(width=0.1), show.legend = FALSE) +
+  labs(x="Temperate Region", y="Leaf Length") +
+  scale_color_manual(values=c("darkblue")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + # Adjust x-axis label appearance
+  coord_cartesian(ylim = c(0, 1250))
+
+# Create the second scatter plot with boxplot
+plot2 <- ggplot(avg_traits, aes(x=factor(Continent), y=Leaf.Width)) +
+  geom_boxplot(fill="pink", color="darkred", width=0.5) +
+  geom_point(aes(color="Leaf Width"), size=2, position=position_jitter(width=0.1), show.legend = FALSE) +
+  labs(x="Temperate Region", y="Leaf Width") +
+  scale_color_manual(values=c("red")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + # Adjust x-axis label appearance
+  coord_cartesian(ylim = c(0, 250))
+
+# Arrange the plots side by side
+grid.arrange(plot1, plot2, ncol=2)
+
+```
+
+```{r, echo=FALSE}
+# 6 Further analysis following PCA results
+
+dependent_vars <- c("Serrated.Smooth", "Hairy.Non.hairy", "Compound.Simple", "Central.Auxiliary")
+
+for (var in dependent_vars) {
+  # Convert the dependent variable to numeric
+  df_PCA[[var]] <- as.numeric(as.character(df_PCA[[var]]))
+  
+  formula <- as.formula(paste(var, "~ Continent"))
+  lm_model <- lm(formula, data = df_PCA[complete.cases(df_PCA), ])
+  
+  # Check for perfect fit
+  if (sum(residuals(lm_model)^2) < 1e-10 * sum((df_PCA[[var]] - mean(df_PCA[[var]]))^2, na.rm = TRUE)) {
+    warning("ANOVA F-tests on an essentially perfect fit are unreliable")
+  } else {
+    anova_result <- anova(lm_model)
+    print(anova_result, signif.stars=F)
+  }
+}
+# Length, width and waxiness are significant
+
+```
+
+*Table 3: The ANOVA scores for Leaf Smoothness, Leaf Hairiness, Compound/Simple structure, and Central/Auxiliary structure show that none of these traits differed significantly across continents.*
+
+The absence of significant differences in traits such as the presence of serrations and hair on leaves, compound versus simple structure, and central versus auxiliary structure across temperate zones (p\>0.05, Table 3) suggests uniformity in these characteristics among plant species within these regions. Moreover, the lack of significant differences in trait means across continents implies a comparable trait variance across temperate zones.
+
+```{r}
+## 8 One-way ANOVA testing and diagnostics
+
+if (!requireNamespace("lmtest", quietly = TRUE)) {
+  install.packages("lmtest")
+}
+library(lmtest)
+
+Continent <- as.factor(avg_traits$Continent)
+
+# Length lm (test)
+
+length_lm <- lm(log(Leaf.Length)~Continent, data=avg_traits)
+hist(length_lm$residuals, xlab="Residual value", cex.lab=1.3)
+# Left-leaning distribution so we use log(y) adjustment
+shapiro.test(length_lm$residuals)
+# Passes normality test
+summary(length_lm)
+print(anova(length_lm))
+# homoscedasticity test: plots
+plot(length_lm, which = 1)  # Plot of residuals vs. fitted values
+plot(length_lm, which = 3)  # Scale-location plot
+bptest(length_lm) # Looks good
+
+# Width lm (test)
+
+width_lm <- lm(log(Leaf.Width)~Continent, data=avg_traits)
+hist(width_lm$residuals, xlab="Residual value", cex.lab=1.3)
+# Left-leaning distribution so we use log(y) adjustment
+shapiro.test(width_lm$residuals)
+qqnorm(width_lm$residuals, cex.lab=1.3)
+abline(a=0,b=1,lty=3)
+# Fails normality test so we conduct bootstrap
+summary(width_lm)
+print(anova(width_lm))
+# homoscedasticity test: plots
+plot(width_lm, which = 1)  # Plot of residuals vs. fitted values
+plot(width_lm, which = 3)  # Scale-location plot
+bptest(width_lm) # Fails homoscedasticity test
+
+# Length:width lm (test)
+
+LW_lm <- lm(log(Leaf.LW)~Continent, data=avg_traits)
+hist(LW_lm$residuals, xlab="Residual value", cex.lab=1.3)
+# Left-leaning distribution so we use log(y) adjustment
+shapiro.test(LW_lm$residuals)
+qqnorm(LW_lm$residuals, cex.lab=1.3)
+abline(a=0,b=1,lty=3)
+# Fails normality test so we conduct bootstrap
+summary(LW_lm)
+print(anova(LW_lm))
+# homoscedasticity test: plots
+plot(LW_lm, which = 1)  # Plot of residuals vs. fitted values
+plot(LW_lm, which = 3)  # Scale-location plot
+bptest(LW_lm) # Fails homoscedasticity test
+
+# abs Length lm (test)
+
+abs_lm <- lm(log(Leaf.abs)~Continent, data=avg_traits)
+hist(abs_lm$residuals, xlab="Residual value", cex.lab=1.3)
+# Left-leaning distribution so we use log(y) adjustment
+shapiro.test(abs_lm$residuals)
+qqnorm(abs_lm$residuals, cex.lab=1.3)
+abline(a=0,b=1,lty=3)
+# Looks normally distributed
+summary(abs_lm)
+print(anova(abs_lm))
+# homoscedasticity test: plots
+plot(abs_lm, which = 1)  # Plot of residuals vs. fitted values
+plot(abs_lm, which = 3)  # Scale-location plot
+bptest(abs_lm) # Passess homoscedasticity test
+
+# Waxiness lm (test)
+
+Waxiness <- as.numeric(avg_traits$Waxy.Non.waxy)
+
+waxy_lm <- lm(Waxiness~Continent, data=avg_traits)
+hist(waxy_lm$residuals, xlab="Residual value", cex.lab=1.3)
+# Left-leaning distribution so we use log(y) adjustment
+shapiro.test(waxy_lm$residuals)
+qqnorm(waxy_lm$residuals, cex.lab=1.3)
+abline(a=0,b=1,lty=3)
+# Fails normality test so we conduct bootstrap
+summary(waxy_lm)
+print(anova(waxy_lm))
+# homoscedasticity test: plots
+plot(waxy_lm, which = 1)  # Plot of residuals vs. fitted values
+plot(waxy_lm, which = 3)  # Scale-location plot
+bptest(waxy_lm) # Looks good
+```
+
+```{r, include=FALSE}
+# Displaying first anova result
+print(anova(length_lm),signif.stars=F)
+```
+
+```{r, echo=FALSE}
+# Create the third scatter plot with boxplot
+plot3 <- ggplot(avg_traits, aes(x=Continent, y=Leaf.LW)) +
+  geom_boxplot(fill="lightgreen", color="green", width=0.5) +
+  geom_point(aes(color="Leaf Length:Width ratio"), size=2, position=position_jitter(width=0.1), show.legend = FALSE) +
+  labs(x="Temperate Region", y="Leaf Length to Width ratio") +
+  scale_color_manual(values=c("darkgreen")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  coord_cartesian(ylim = c(0, 50))
+
+# Create the second scatter plot with boxplot
+plot4 <- ggplot(avg_traits, aes(x=Continent, y=Leaf.abs)) +
+  geom_boxplot(fill="orange", color="tan", width=0.5) +
+  geom_point(aes(color="Absolute Leaf Size"), size=2, position=position_jitter(width=0.1), show.legend = FALSE) +
+  labs(x="Temperate Region", y="Absolute Leaf Size") +
+  scale_color_manual(values=c("brown")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  coord_cartesian(ylim = c(0, 80000))
+
+# Arrange the plots side by side
+grid.arrange(plot3, plot4, ncol=2)
+
+```
+
+*Figure 4: Boxplots illustrate the average leaf length:width (green) and absolute leaf area (orange) across continents. To facilitate clearer visualization and aid data interpretation, the plot was adjusted to display a narrower range of values along the y-axis.*
+
+```{r, echo=FALSE}
+## 9 BootStrapping for width values
+
+if (!requireNamespace("boot", quietly = TRUE)) {
+  install.packages("boot")
+}
+library(boot)
+
+# Define the function to compute the parameter estimates from the linear model
+bootstrap_lm <- function(data, indices) {
+  # Extract the bootstrap sample
+  boot_data <- data[indices, ]
+  
+  # Fit the linear model
+  lm_result <- lm(log(Leaf.LW) ~ (Continent), data = boot_data)
+  
+  # Return the coefficients of the linear model
+  return(coef(lm_result))
+}
+
+# Perform bootstrap resampling
+set.seed(123)  # for reproducibility
+bootstrap_results <- replicate(1000, bootstrap_lm(avg_traits, sample(nrow(avg_traits), replace = TRUE)))
+
+# Convert results to a matrix
+bootstrap_results <- t(bootstrap_results)
+
+# Compute confidence intervals for coefficients
+boot_ci <- apply(bootstrap_results, 2, quantile, probs = c(0.025, 0.975))
+
+# Linear models
+
+LW_lm_2 <- lm(log(Leaf.LW)~(Continent), data=avg_traits)
+# Left-leaning distribution so we use log(y) adjustment
+
+# Manually perform ANOVA using bootstrapped coefficients
+
+# Calculate F-statistic and p-value manually
+num_coef <- length(coef(LW_lm_2))
+SS_residual <- sum(resid(LW_lm_2)^2)
+SS_bootstrap <- sum((bootstrap_results - colMeans(bootstrap_results))^2)
+F_statistic <- (SS_bootstrap / (num_coef - 1)) / (SS_residual / (nrow(avg_traits) - num_coef))
+p_value <- 1 - pf(F_statistic, num_coef - 1, nrow(avg_traits) - num_coef)
+
+# Determine the number of levels of the predictor variable "Continent"
+num_levels <- length(levels(Continent))
+
+# Compute the degrees of freedom for the predictor variable
+df_continent <- num_levels - 1
+
+# Compute sum of squares for the "Continent" predictor variable
+SS_continent <- sum((bootstrap_results[1, ] - mean(bootstrap_results[1, ]))^2)
+
+# Compute mean square for the "Continent" predictor variable
+MS_continent <- SS_continent / df_continent
+
+# Construct ANOVA-like table
+anova_table <- data.frame(
+  Source = "Continent",
+  Df = df_continent,
+  Sum_Sq = SS_continent,
+  Mean_Sq = MS_continent,
+  F_value = F_statistic,
+  Pr = p_value
+)
+
+# Display ANOVA-like table
+print(anova_table)
+
+```
+
+*Table 4: The ANOVA score shows that plant species differ significantly in their Leaf Width:Length ratio across continents, with a very low p-value. Leaf width:length ratios in this analysis were bootstrapped for additional rigor.*
+
+```{r, echo=FALSE}
+abs_lm <- lm(log(Leaf.abs)~Continent, data=avg_traits)
+# Left-leaning distribution so we use log(y) adjustment
+print(anova(abs_lm), signif.stars=FALSE)
+```
+
+*Table 5: The ANOVA score shows that plant species differ significantly in their absolute leaf area across continents, with a very low p-value.*
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+## 10 BootStrapping for Waxiness values
+
+library(boot)
+library(multcomp)
+
+# Define the function to compute the parameter estimates from the linear model
+bootstrap_lm <- function(data, indices) {
+  # Extract the bootstrap sample
+  boot_data <- data[indices, ]
+  
+  # Fit the linear model
+  lm_result <- lm(Waxiness ~ (Continent), data = boot_data)
+  
+  # Return the coefficients of the linear model
+  return(coef(lm_result))
+}
+
+# Perform bootstrap resampling
+set.seed(123)  # for reproducibility
+bootstrap_results <- replicate(1000, bootstrap_lm(avg_traits, sample(nrow(avg_traits), replace = TRUE)))
+
+# Convert results to a matrix
+bootstrap_results <- t(bootstrap_results)
+
+# Compute confidence intervals for coefficients
+boot_ci <- apply(bootstrap_results, 2, quantile, probs = c(0.025, 0.975))
+
+# Linear models
+
+waxy_lm_2 <- lm(Waxiness~(Continent), data=avg_traits)
+# Left-leaning distribution so we use log(y) adjustment
+
+# Manually perform ANOVA using bootstrapped coefficients
+
+# Calculate F-statistic and p-value manually
+num_coef <- length(coef(waxy_lm_2))
+SS_residual <- sum(resid(waxy_lm_2)^2)
+SS_bootstrap <- sum((bootstrap_results - colMeans(bootstrap_results))^2)
+F_statistic <- (SS_bootstrap / (num_coef - 1)) / (SS_residual / (nrow(avg_traits) - num_coef))
+p_value <- 1 - pf(F_statistic, num_coef - 1, nrow(avg_traits) - num_coef)
+
+# Determine the number of levels of the predictor variable "Continent"
+num_levels <- length(levels(Continent))
+
+# Compute the degrees of freedom for the predictor variable
+df_continent <- num_levels - 1
+
+# Compute sum of squares for the "Continent" predictor variable
+SS_continent <- sum((bootstrap_results[1, ] - mean(bootstrap_results[1, ]))^2)
+
+# Compute mean square for the "Continent" predictor variable
+MS_continent <- SS_continent / df_continent
+
+# Construct ANOVA-like table
+anova_table <- data.frame(
+  Source = "Continent",
+  Df = df_continent,
+  Sum_Sq = SS_continent,
+  Mean_Sq = MS_continent,
+  F_value = F_statistic,
+  Pr = p_value
+)
+
+print(anova_table)
+
+```
+
+*Table 6: The ANOVA score shows that plant species differ significantly in whether they are waxy or non-waxy across continents, with a very low p-value. Waxiness data in this analysis was bootstrapped for additional rigor.*
+
+The traits leaf Length to width ratio and leaf area (Figure 5) in addition to leaf waxiness show significant differences across continents (p \< 0.05, Tables 4, 5, 6). This suggests that plant species in temperate zones have evolved differently in terms of their area, leaf shape and waxiness. The significant differences in trait means across continents may also imply differences in trait variances, as the variance contributes to the mean differences observed.
+
+```{r, echo=FALSE}
+## Pairwise t tests
+
+# Define meaningful variable names
+continent_names <- c("Africa", "Americas", "Asia", "Australia", "Himalayas", "New Zealand", "Western Australia")
+waxy_categories <- c("Non-waxy", "Waxy")
+
+# Define a function to perform pairwise t-tests
+perform_pairwise_tests <- function(response_var, factor_var) {
+  # Replace factor levels with corresponding numeric values
+  numeric_factor <- as.numeric(factor_var)
+  
+  # Convert numeric values to factor levels
+  factor_levels <- continent_names[numeric_factor]
+  
+  # Perform pairwise t-tests
+  pairwise_t_tests <- pairwise.t.test(response_var, factor_levels, p.adjust.method = "bonferroni")
+  
+  # Return the results
+  return(pairwise_t_tests)
+}
+
+# Perform pairwise t-tests for Leaf.LW and Continent
+pairwise_t_tests_leaf_lw_continent <- perform_pairwise_tests(avg_traits$Leaf.LW, avg_traits$Continent)
+print(pairwise_t_tests_leaf_lw_continent)
+
+# Perform pairwise t-tests for Leaf.abs and Continent
+pairwise_t_tests_leaf_abs_continent <- perform_pairwise_tests(log(avg_traits$Leaf.abs), avg_traits$Continent)
+print(pairwise_t_tests_leaf_abs_continent)
+
+# Convert factor to numeric for Waxy.Non.waxy variable
+numeric_waxy <- as.numeric(avg_traits$Waxy.Non.waxy)
+
+# Perform pairwise t-tests for Waxy.Non.waxy and Continent
+pairwise_t_tests_waxy_continent <- perform_pairwise_tests(numeric_waxy, avg_traits$Continent)
+print(pairwise_t_tests_waxy_continent)
+```
+
+*Table 7: Pairwise t-test results for (a) Leaf.LW, (b) Leaf.abs and (c) Waxy.Non.waxy with Boneforroni adjustments*
+
+Pairwise analyses (Table 7) compare the effect of different continents on the variable Leaf.LW (a), Leaf.abs (b) and Waxy.Non.waxy (c), and present p-values for pairwise comparisons between them.
+
+##
