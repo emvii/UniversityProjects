@@ -3,7 +3,7 @@
 ## Objective
 This repository contains code and data for analysing convergent versus non-convergent plant traits in temperate biogeographic regions. The project evaluates morphological traits of plant species from RBG Kew's Temperate House to investigate patterns of evolutionary convergence. The code provided processes quantitative and qualitative leaf measurements, comparing trait averages and variances across regions.
 
-When run with 'knit on save' enabled, the code outputs statistical analyses and visualizations of trait distribution across sampled species, supporting hypotheses on adaptive convergence. Detailed findings and methodology are documented in "Temperate-Zones-Convergence-REPORT".
+When run with 'knit on save' enabled, the code outputs statistical analyses and visualizations of trait distribution across sampled species, supporting hypotheses on adaptive convergence. Detailed findings and methodology are documented in "Temperate-Zones-Convergence-REPORT.pdf".
 
 ## Requirements
 The code was developed and tested in RStudio version 2023.12.1 with R version 4.1.2 (2021-11-01)
