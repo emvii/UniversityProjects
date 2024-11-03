@@ -41,4 +41,4 @@ To execute the code:
 - Open RStudio and open the file `PROJECT_Ver2.Rmd`.
 - Run all code chunks to generate analyses and visualizations.
 
-- (This work was completed at UCL as part of my 3rd-year project module titled BIOL0056 Collaborative Project in the Biological Sciences).
+(This work was completed at UCL as part of my 3rd-year project module titled BIOL0056 Collaborative Project in the Biological Sciences)
