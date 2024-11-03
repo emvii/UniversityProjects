@@ -1,0 +1,630 @@
+---
+title: "oak_project"
+output: html_document
+date: "2024-05-20"
+---
+
+Genome explorations of Oak trees in Hainault forest National Park. 
+
+# 1 PCA analyses
+
+```{r, include=FALSE}
+
+setwd(".")
+
+# 1 Separating Genotype Matrix by Species
+
+# Read the sample metadata
+sample_metadata <- read.csv("samples-sheet.csv", header = TRUE, stringsAsFactors = FALSE)
+
+## HERE FOR DIFFERENT CHROMOSOME
+
+# Read the genotype matrix
+genotype_matrix <- read.table("genotype-matrix-Qrob_Chr11", header = TRUE, stringsAsFactors = FALSE, check.names = FALSE, sep="\t")
+
+# Inspect the data
+print("Sample Metadata:")
+print(head(sample_metadata))
+
+print("Genotype Matrix:")
+print(head(genotype_matrix))
+
+# Ensure the sample ID column in sample metadata is named "Sample_ID"
+names(sample_metadata)[1] <- "Sample_ID"
+
+# Create a named vector of species for easy lookup
+sample_species <- setNames(sample_metadata$Species, sample_metadata$Sample_ID)
+
+# Separate columns by species
+quercus_robur_cols <- names(genotype_matrix) %in% names(sample_species[sample_species == "Quercus robur"])
+quercus_petraea_cols <- names(genotype_matrix) %in% names(sample_species[sample_species == "Quercus petraea"])
+
+# Create separate data frames for each species
+quercus_robur_genotype <- genotype_matrix[, quercus_robur_cols]
+quercus_petraea_genotype <- genotype_matrix[, quercus_petraea_cols]
+
+# Inspect the separated data
+print("Quercus robur Genotype Matrix:")
+print(head(quercus_robur_genotype))
+
+print("Quercus petraea Genotype Matrix:")
+print(head(quercus_petraea_genotype))
+
+# Save the separated genotype matrices
+write.csv(quercus_robur_genotype, "quercus_robur_genotype_matrix.csv", row.names = FALSE)
+write.csv(quercus_petraea_genotype, "quercus_petraea_genotype_matrix.csv", row.names = FALSE)
+
+```
+
+# 2.1 F_ST Scores Analysis
+
+``` {r, echo=FALSE}
+
+# 1 Preparing data for FST study
+
+# Dependency: 1.1
+
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+
+# Load genotype_matrix and sample_metadata
+# Assuming they are already loaded into the environment
+
+# Check the structures
+head(genotype_matrix)
+head(sample_metadata)
+
+# Verify the subsets
+head(quercus_robur_genotype)
+head(quercus_petraea_genotype)
+
+# Changing the name of the objects just cuz
+genotype_robur <- quercus_robur_genotype
+genotype_petraea <- quercus_petraea_genotype
+
+```
+
+## 2.2 Combining the datasets, adding labels and transposing
+
+``` {r, echo=FALSE}
+
+# 2.2 Combining the datasets
+
+# Transpose genotype matrices to have samples as rows
+genotype_robur_t <- as.data.frame(t(genotype_robur))
+genotype_petraea_t <- as.data.frame(t(genotype_petraea))
+
+# Ensure all genotype columns are numeric
+genotype_robur_t[] <- lapply(genotype_robur_t, as.numeric)
+genotype_petraea_t[] <- lapply(genotype_petraea_t, as.numeric)
+
+# Add Population column
+genotype_robur_t$Population <- "Quercus robur"
+genotype_petraea_t$Population <- "Quercus petraea"
+
+# Combine the datasets
+combined_genotype <- rbind(genotype_robur_t, genotype_petraea_t)
+
+# Ensure Population column is a factor
+combined_genotype$Population <- as.factor(combined_genotype$Population)
+
+```
+``` {r, echo=FALSE}
+
+m <- combined_genotype
+
+# Check if all sample IDs in the genotype matrix match the sample metadata
+matching_ids <- rownames(m) %in% sample_metadata$Sample_ID
+if (!all(matching_ids)) {
+  stop("Some sample IDs in the genotype matrix do not match the sample metadata.")
+}
+
+# Subset the sample metadata to match the genotype matrix rows
+sample_metadata <- sample_metadata[match(rownames(m), sample_metadata$Sample_ID), ]
+
+# Ensure that the number of rows matches between the matrix and metadata
+if (nrow(m) != nrow(sample_metadata)) {
+  stop("Number of rows in the genotype matrix does not match the sample metadata after subsetting.")
+}
+
+
+# Convert all columns to numeric
+m_numeric <- apply(m, 2, function(x) as.numeric(as.character(x)))
+
+# Check for non-numeric columns that were converted to NA
+non_numeric_cols <- apply(m_numeric, 2, function(x) any(is.na(x)))
+if (any(non_numeric_cols)) {
+  warning("There are non-numeric columns that were converted to NA. These will be removed.")
+}
+
+# Remove columns that became NA due to non-numeric conversion
+m_numeric <- m_numeric[, !non_numeric_cols]
+
+# Check the dimensions of the numeric matrix
+dim(m_numeric)
+
+# Custom scaling function
+scale_custom <- function(x) {
+  if (sd(x, na.rm = TRUE) == 0) {
+    return(x)  # Return as is if variance is zero
+  } else {
+    return((x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE))  # Standard scale
+  }
+}
+
+# Apply custom scaling function to the numeric matrix
+m_scaled <- apply(m_numeric, 2, scale_custom)
+
+# Check the dimensions of the scaled matrix
+dim(m_scaled)
+
+# Perform PCA on the scaled matrix
+p <- prcomp(m_scaled, retx = TRUE)
+
+# Extract variance explained by each principal component
+v <- p$sdev^2
+pv <- 100 * v / sum(v)
+
+# Plot the percentage of variance explained by each principal component
+barplot(pv, xlab = "PC", ylab = "% variance", ylim = c(0, 100), main = "% Variance explained by each principal component (PC)")
+
+# Combine PCA scores with sample metadata
+df_PCA <- cbind(sample_metadata, p$x[, 1:4]) # Adjust number of PCs as needed
+
+# Check the dimensions of the combined data frame
+dim(df_PCA)
+
+# Plot the PCA results using ggplot2
+library(ggplot2)
+ggplot(df_PCA, aes(x = PC1, y = PC2, color = Species)) + 
+  geom_point() + 
+  theme_minimal() + 
+  labs(title = "PCA of Genotype Data", x = paste0("PC1 (", round(pv[1], 1), "%)"), y = paste0("PC2 (", round(pv[2], 1), "%)")) +
+  theme(legend.position = "right")
+
+
+```
+
+Most data points for each species are concentrated at very low values on both axes, with just one extreme outlier on the PC2 axis.
+
+This outlier (a point far along PC2) could be an anomaly, possibly representing a different population or an issue in the data.
+
+Typically, hybridization would be suggested by intermediate positions between clusters, indicating genetic overlap or blending. However, the points here are either highly clustered near the origin or isolated, with no gradual distribution.
+
+ntrogression, or the incorporation of genetic material from one species into another through backcrossing, might show some intermediate positioning of points across both axes. However, this plot doesn’t offer clear evidence of this.
+
+The tight clustering near the origin and the isolated outlier suggest possible issues with data scaling or outlier handling, rather than direct evidence of genetic mixing.
+
+
+``` {r, echo=FALSE, eval=FALSE}
+
+# Load necessary library
+data <- read.table("genotype-matrix-single-file", header = TRUE, stringsAsFactors = FALSE, check.names = FALSE, sep="\t")
+
+# Extract genotype columns (assuming first four columns are CHROM, POS, REF, ALT)
+genotype_data <- data[, 5:ncol(data)]
+
+# Convert genotype data to numeric
+genotype_data <- as.data.frame(lapply(genotype_data, function(x) as.numeric(as.character(x))))
+
+# Check the structure of the genotype data
+str(genotype_data)
+
+# Transpose the genotype data
+genotype_matrix <- t(genotype_data)
+
+# Assign row names (sample IDs) from the original column names
+rownames(genotype_matrix) <- colnames(data)[5:ncol(data)]
+
+# Convert to data frame for PCA
+genotype_matrix <- as.data.frame(genotype_matrix)
+
+# Check the dimensions of the genotype matrix
+dim(genotype_matrix)
+
+# Custom scaling function to handle zero variance columns
+scale_custom <- function(x) {
+  if (sd(x, na.rm = TRUE) == 0) {
+    return(x)  # Return as is if variance is zero
+  } else {
+    return((x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE))  # Standard scale
+  }
+}
+
+# Apply custom scaling function to the genotype matrix
+genotype_scaled <- as.data.frame(apply(genotype_matrix, 2, scale_custom))
+
+# Perform PCA on the scaled genotype matrix
+pca_result <- prcomp(genotype_scaled, retx = TRUE)
+
+# Extract variance explained by each principal component
+variance_explained <- pca_result$sdev^2
+percent_variance <- 100 * variance_explained / sum(variance_explained)
+
+# Plot the percentage of variance explained by each principal component
+barplot(percent_variance, xlab = "PC", ylab = "% Variance", ylim = c(0, 100), main = "% Variance explained by each principal component (PC)")
+
+# Combine PCA scores with sample metadata if available
+# Assuming sample_metadata is available and matches the rownames of genotype_matrix
+# df_PCA <- cbind(sample_metadata, pca_result$x[, 1:4]) # Adjust number of PCs as needed
+
+# Plot the PCA results using ggplot2
+library(ggplot2)
+ggplot(data.frame(pca_result$x), aes(x = PC1, y = PC2)) + 
+  geom_point() + 
+  theme_minimal() + 
+  labs(title = "PCA of Genotype Data", x = paste0("PC1 (", round(percent_variance[1], 1), "%)"), y = paste0("PC2 (", round(percent_variance[2], 1), "%)")) +
+  theme(legend.position = "right")
+
+```
+
+``` {r, echo=FALSE,eval=FALSE}
+
+# The code below processes the genotype matrix and performs PCA on the data. 
+# Not working due to there being too many duplicate sample IDs in the metadata, so it was discarded.
+
+#
+
+# Assuming sample_metadata is your metadata dataframe
+# and it contains a column named "Sample_ID" and "Species"
+
+# Ensure the row names of the genotype matrix are set to match sample IDs
+rownames(genotype_matrix) <- colnames(data)[5:ncol(data)]
+
+# Align the sample metadata with the genotype matrix rows
+sample_metadata <- sample_metadata[match(rownames(genotype_matrix), sample_metadata$Sample_ID), ]
+
+# Ensure that the number of rows matches between the matrix and metadata
+if (nrow(genotype_matrix) != nrow(sample_metadata)) {
+  stop("Number of rows in the genotype matrix does not match the sample metadata.")
+}
+
+# Convert all columns to numeric
+genotype_numeric <- apply(genotype_matrix, 2, function(x) as.numeric(as.character(x)))
+
+# Check for non-numeric columns that were converted to NA
+non_numeric_cols <- apply(genotype_numeric, 2, function(x) any(is.na(x)))
+if (any(non_numeric_cols)) {
+  warning("There are non-numeric columns that were converted to NA. These will be removed.")
+}
+
+# Remove columns that became NA due to non-numeric conversion
+genotype_numeric <- genotype_numeric[, !non_numeric_cols]
+
+# Check the dimensions of the numeric matrix
+dim(genotype_numeric)
+
+# Custom scaling function
+scale_custom <- function(x) {
+  if (sd(x, na.rm = TRUE) == 0) {
+    return(x)  # Return as is if variance is zero
+  } else {
+    return((x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE))  # Standard scale
+  }
+}
+
+# Apply custom scaling function to the numeric matrix
+genotype_scaled <- as.data.frame(apply(genotype_numeric, 2, scale_custom))
+
+# Check the dimensions of the scaled matrix
+dim(genotype_scaled)
+
+# Perform PCA on the scaled matrix
+pca_result <- prcomp(genotype_scaled, retx = TRUE)
+
+# Extract variance explained by each principal component
+variance_explained <- pca_result$sdev^2
+percent_variance <- 100 * variance_explained / sum(variance_explained)
+
+# Plot the percentage of variance explained by each principal component
+barplot(percent_variance, xlab = "PC", ylab = "% Variance", ylim = c(0, 100), main = "% Variance explained by each principal component (PC)")
+
+# Combine PCA scores with sample metadata
+df_PCA <- cbind(sample_metadata, pca_result$x[, 1:4]) # Adjust number of PCs as needed
+
+# Check the dimensions of the combined data frame
+dim(df_PCA)
+
+# Plot the PCA results using ggplot2
+library(ggplot2)
+ggplot(df_PCA, aes(x = PC1, y = PC2, color = Species)) + 
+  geom_point(size = 2) + 
+  theme_minimal() + 
+  labs(title = "PCA of Genotype Data - All Chromosomes", x = paste0("PC1 (", round(percent_variance[1], 1), "%)"), y = paste0("PC2 (", round(percent_variance[2], 1), "%)")) +
+  theme(legend.position = "right")
+
+###
+
+# Check for duplicate Sample_IDs in sample_metadata
+duplicate_ids <- sample_metadata$Sample_ID[duplicated(sample_metadata$Sample_ID)]
+if (length(duplicate_ids) > 0) {
+  stop(paste("Duplicate Sample_IDs found:", paste(duplicate_ids, collapse = ", ")))
+}
+
+# Assuming sample_metadata is your metadata dataframe
+# and it contains a column named "Sample_ID" and "Species"
+
+# Ensure the row names of the genotype matrix are set to match unique sample IDs
+rownames(genotype_matrix) <- sample_metadata$Sample_ID
+
+# Align the sample metadata with the genotype matrix rows
+sample_metadata <- sample_metadata[match(rownames(genotype_matrix), sample_metadata$Sample_ID), ]
+
+# Ensure that the number of rows matches between the matrix and metadata
+if (nrow(genotype_matrix) != nrow(sample_metadata)) {
+  stop("Number of rows in the genotype matrix does not match the sample metadata.")
+}
+
+# Convert all columns to numeric
+genotype_numeric <- apply(genotype_matrix, 2, function(x) as.numeric(as.character(x)))
+
+# Check for non-numeric columns that were converted to NA
+non_numeric_cols <- apply(genotype_numeric, 2, function(x) any(is.na(x)))
+if (any(non_numeric_cols)) {
+  warning("There are non-numeric columns that were converted to NA. These will be removed.")
+}
+
+# Remove columns that became NA due to non-numeric conversion
+genotype_numeric <- genotype_numeric[, !non_numeric_cols]
+
+# Check the dimensions of the numeric matrix
+dim(genotype_numeric)
+
+# Custom scaling function
+scale_custom <- function(x) {
+  if (sd(x, na.rm = TRUE) == 0) {
+    return(x)  # Return as is if variance is zero
+  } else {
+    return((x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE))  # Standard scale
+  }
+}
+
+# Apply custom scaling function to the numeric matrix
+genotype_scaled <- as.data.frame(apply(genotype_numeric, 2, scale_custom))
+
+# Check the dimensions of the scaled matrix
+dim(genotype_scaled)
+
+# Perform PCA on the scaled matrix
+pca_result <- prcomp(genotype_scaled, retx = TRUE)
+
+# Extract variance explained by each principal component
+variance_explained <- pca_result$sdev^2
+percent_variance <- 100 * variance_explained / sum(variance_explained)
+
+# Plot the percentage of variance explained by each principal component
+barplot(percent_variance, xlab = "PC", ylab = "% Variance", ylim = c(0, 100), main = "% Variance explained by each principal component (PC)")
+
+# Combine PCA scores with sample metadata
+df_PCA <- cbind(sample_metadata, pca_result$x[, 1:4]) # Adjust number of PCs as needed
+
+# Check the dimensions of the combined data frame
+dim(df_PCA)
+
+# Plot the PCA results using ggplot2
+library(ggplot2)
+pca_plot <- ggplot(df_PCA, aes(x = PC1, y = PC2, color = Species)) + 
+  geom_point(size = 2) + 
+  theme_minimal() + 
+  labs(title = "PCA of Genotype Data - All Chromosomes", x = paste0("PC1 (", round(percent_variance[1], 1), "%)"), y = paste0("PC2 (", round(percent_variance[2], 1), "%)")) +
+  theme(legend.position = "right")
+print(pca_plot)
+
+# Manually identify outliers based on visual inspection of the plot
+# Suppose you identified samples with IDs 10, 20, 30 as outliers
+outlier_ids <- c(10, 20, 30)
+
+# Ensure sample IDs are character for matching
+outlier_ids <- as.character(outlier_ids)
+
+# Remove outliers from genotype data and metadata using Sample_IDs
+genotype_cleaned <- genotype_numeric[!rownames(genotype_numeric) %in% outlier_ids, ]
+sample_metadata_cleaned <- sample_metadata[!sample_metadata$Sample_ID %in% outlier_ids, ]
+
+# Ensure the dimensions match after removing outliers
+if (nrow(genotype_cleaned) != nrow(sample_metadata_cleaned)) {
+  stop("Number of rows in the cleaned genotype matrix does not match the cleaned sample metadata.")
+}
+
+# Standardize the cleaned data
+genotype_cleaned_scaled <- as.data.frame(apply(genotype_cleaned, 2, scale_custom))
+
+# Recompute PCA on cleaned data
+pca_cleaned_result <- prcomp(genotype_cleaned_scaled, retx = TRUE)
+
+# Extract variance explained by each principal component for the cleaned data
+variance_explained_cleaned <- pca_cleaned_result$sdev^2
+percent_variance_cleaned <- 100 * variance_explained_cleaned / sum(variance_explained_cleaned)
+
+# Plot the percentage of variance explained by each principal component for the cleaned data
+barplot(percent_variance_cleaned, xlab = "PC", ylab = "% Variance", ylim = c(0, 100), main = "% Variance explained by each principal component (PC) - Cleaned")
+
+# Combine PCA scores with cleaned sample metadata
+df_PCA_cleaned <- cbind(sample_metadata_cleaned, pca_cleaned_result$x[, 1:4]) # Adjust number of PCs as needed
+
+# Plot the cleaned PCA results using ggplot2
+pca_cleaned_plot <- ggplot(df_PCA_cleaned, aes(x = PC1, y = PC2, color = Species)) + 
+  geom_point(size = 2) + 
+  theme_minimal() + 
+  labs(title = "PCA of Genotype Data - All Chromosomes (Cleaned)", x = paste0("PC1 (", round(percent_variance_cleaned[1], 1), "%)"), y = paste0("PC2 (", round(percent_variance_cleaned[2], 1), "%)")) +
+  theme(legend.position = "right")
+print(pca_cleaned_plot)
+
+```
+
+## 2.3 Calculating F_ST using heirfstat package, 
+
+Calculates the overall FST value on the entire chromosome using the hierfstat package. This workflow helps assess the degree of genetic differentiation between populations across the chromosome based on the FST metric. This is a time consuming process.
+
+``` {r, echo=FALSE}
+
+# 2.3 Calculating overall F_ST for the whole chromosome
+
+# Install and load the hierfstat package if not already installed
+if (!requireNamespace("hierfstat", quietly = TRUE)) {
+  install.packages("hierfstat")
+}
+library(hierfstat)
+
+# Prepare the data for hierfstat
+# Ensure Population is the first column and all other columns are numeric
+hierfstat_data <- combined_genotype %>% 
+  dplyr::select(Population, everything())
+
+# Verify the structure of hierfstat_data, ensuring that it is set up correctly
+str(hierfstat_data)
+
+# Calculate F_ST
+fst_results <- wc(hierfstat_data, diploid = TRUE)
+fst_value <- fst_results$FST
+head(fst_value)
+
+```
+
+Chloroplast FST is `0.0003919184`
+Mitochondria FST is `0.001702633`
+Chromosome 10 FST is `0.005184404`
+Chromosome 11 FST is `0.002538074`
+The low FST indicates a very low level of genetic differentiation between sessile and pedunculate oak populations.
+
+This result was not published in our final report as FST is not a sensitive enough metric to be accurate in determining the level of genetic differentiation between the two oak species, likely due to significant genetic overlap between the two species (best demonstrated in our figures).
+
+But it adds additional statistical rigor to support our results.
+
+``` {r, include=FALSE, eval=FALSE}
+
+# NOT WORKING
+
+# 2.4 Calculating FST for each SNP loci separately
+
+# Function to calculate F_ST for a single SNP
+calculate_fst_snp <- function(genotype_data, population) {
+  snp_data <- data.frame(genotype = as.numeric(genotype_data), population = population)
+  snp_data <- snp_data[complete.cases(snp_data), ] # Remove rows with NAs
+  fst_result <- wc(snp_data, diploid = TRUE)
+  return(fst_result$FST)
+}
+
+# Extract population data
+population_data <- hierfstat_data$Population
+
+# Calculate F_ST for each SNP
+fst_values <- apply(hierfstat_data[, -1], 2, calculate_fst_snp, population = population_data)
+
+# Verify F_ST values
+head(fst_values)
+
+```
+
+## 2.5 Watterson's Theta and Charts
+
+``` {r, echo=FALSE}
+
+# 2.5 Producing a data frame of Watterson's Theta values (NOT WORKING)
+
+# Function to calculate Watterson's Theta
+calculate_theta <- function(genotype_matrix) {
+  S <- apply(genotype_matrix, 2, function(row) sum(row != 0 & row != 2)) # Segregating sites
+  n <- nrow(genotype_matrix) # Number of sequences
+  a_n <- sum(1 / (1:(n - 1))) # Harmonic number
+  theta <- S / a_n
+  return(theta)
+}
+
+# Calculate Theta for each species
+theta_robur <- calculate_theta(genotype_robur_t[, -ncol(genotype_robur_t)])
+theta_petraea <- calculate_theta(genotype_petraea_t[, -ncol(genotype_petraea_t)])
+
+head(theta_robur)
+head(theta_petraea)
+```
+``` {r, echo=FALSE}
+# Charts for Watterson's Theta values
+
+# 1 barplot (Small datasets)
+
+# Combine the Theta values into a data frame
+theta_data <- data.frame(
+  SNP = 1:length(theta_robur),
+  Theta_Robur = theta_robur,
+  Theta_Petraea = theta_petraea
+)
+
+# Melt the data frame for ggplot2
+library(reshape2)
+theta_melted <- melt(theta_data, id.vars = "SNP", variable.name = "Species", value.name = "Theta")
+
+# Create a bar plot
+library(ggplot2)
+ggplot(theta_melted, aes(x = factor(SNP), y = Theta, fill = Species)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  theme_minimal() +
+  xlab("SNP") +
+  ylab("Watterson's Theta") +
+  ggtitle("Watterson's Theta Values for Quercus robur and Quercus petraea") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_fill_manual(values = c("Theta_Robur" = "blue", "Theta_Petraea" = "red"))
+```
+
+Quercus robur (in blue) generally shows higher Watterson's Theta values than Quercus petraea (in red) at many SNP sites. This could suggest that Q. robur has higher genetic diversity in this dataset, although you'd need to calculate average values for each species to confirm this systematically.
+
+The variation in Watterson's Theta across SNP sites indicates that genetic diversity is not uniform across the genome. Some SNPs have much higher Theta values, which might indicate areas with higher polymorphism rates or regions with historical selective pressures.
+
+The presence of a few high peaks (where Theta values reach above 8 or even 12) could point to regions with a high concentration of genetic variation in Q. robur. This could potentially be regions under balancing selection or areas where recombination is frequent.
+
+Additional statistical analyses, such as mean and variance comparisons, are needed.
+
+``` {r, echo=FALSE, eval=FALSE}
+
+# 2 boxplot (Small datasets)
+
+# Create a box plot
+ggplot(theta_melted, aes(x = Species, y = Theta, fill = Species)) +
+  geom_boxplot() +
+  theme_minimal() +
+  xlab("Species") +
+  ylab("Watterson's Theta") +
+  ggtitle("Distribution of Watterson's Theta Values") +
+  scale_fill_manual(values = c("Theta_Robur" = "blue", "Theta_Petraea" = "red"))
+
+```
+
+``` {r, echo=FALSE, eval=FALSE}
+
+# 3 Aesthetically appealing (not really) boxplot (Small datasets)
+
+# Load necessary libraries
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+
+# Combine the Theta values into a data frame
+theta_data <- data.frame(
+  SNP = 1:length(theta_robur),
+  Theta_Robur = theta_robur,
+  Theta_Petraea = theta_petraea
+)
+
+# Melt the data frame for ggplot2
+theta_melted <- melt(theta_data, id.vars = "SNP", variable.name = "Species", value.name = "Theta")
+
+# Calculate counts of data points for each species
+counts <- theta_melted %>%
+  group_by(Species) %>%
+  summarise(count = n())
+
+# Create an improved box plot with jittered points and count annotations
+ggplot(theta_melted, aes(x = Species, y = Theta, fill = Species)) +
+  geom_boxplot(outlier.shape = NA) + # Remove outliers from the box plot
+  geom_jitter(width = 0.2, alpha = 0.5) + # Add jittered points
+  theme_minimal() +
+  xlab("Species") +
+  ylab("Watterson's Theta") +
+  ggtitle("Distribution of Watterson's Theta Values") +
+  scale_fill_manual(values = c("Theta_Robur" = "blue", "Theta_Petraea" = "red")) +
+  ylim(0, 7.5) + # Set y-axis limit
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + # Adjust x-axis text
+  geom_text(data = counts, aes(x = Species, y = 7.5, label = paste0("n=", count)), vjust = -0.5) # Add counts
+
+```
