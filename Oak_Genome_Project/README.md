@@ -16,12 +16,16 @@ This repository contains the following files necessary for successful operation 
 
 - `genotype-matrix-Qrob_Chr10`, containing the genotype data for chromosome 10
 - `genotype-matrix-Qrob_Chr11`, containing the genotype data for chromosome 11
-- `genotype-matrix-single-file`, a matrix containing the genotype data for all chromosomes across all samples.
-- `samples-sheet.csv`, a csv file containing the metadata for all samples.
+- `samples-sheet.csv`, a .csv file containing the sample metadata of all genomes across all samples.
 
 ### Dependencies
 
 List of required R packages:
+
+- ggplot2
+- reshape2
+- dplyr
+- hierfstat
 
 ## Installation
 
